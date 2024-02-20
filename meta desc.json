@@ -1,0 +1,15 @@
+{
+    "title":"title",
+    "filename":"str",
+    "format": "fileFormat",
+
+    "coverImage":{
+        "file":"file",
+        "url":"url"
+    },
+    "url":"url",
+    "upload":"uploadDate",
+    "type":["Information"],
+    "topic":["Violence"],
+    "description":"description"
+}
