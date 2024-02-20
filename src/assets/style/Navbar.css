@@ -1,0 +1,14 @@
+header
+{
+    margin: 0;
+    padding: 0;
+    border: 1px solid black;
+}
+
+.class-img-logo img{
+    margin-top: -1em;
+    width: 10em;
+    height: 5em;
+    object-fit: contain;
+    margin-bottom: -1.2em;
+}
