@@ -1,0 +1,31 @@
+.navbar-active {
+    background-color: #FF0000; /* Active color */
+  }
+  
+  .navbar-inactive {
+    background-color: #CCCCCC; /* Inactive color */
+  }
+  
+  /* Adjust other styles as needed */
+  
+.menu-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1em;
+}
+.css-1bjk3jo-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
+    color: #DA291C !important;
+}
+.big-menu-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.big-menu-container h3
+{
+    font-size: 30px;
+}

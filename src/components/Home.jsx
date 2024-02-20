@@ -1,9 +1,16 @@
 import React from 'react';
+import Navbar from '../layout/Navbar'
+import Banner from '../layout/Banner';
+import Menu from '../layout/Menu';
+import Card from '../layout/Card';
 
-function Home() {
+const Home =() => {
   return (
     <div>
-      <h1>Hello World</h1>
+      <Navbar />
+      <Banner />
+      <Menu />
+      <Card />
     </div>
   );
 }
