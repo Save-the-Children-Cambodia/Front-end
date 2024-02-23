@@ -11,7 +11,7 @@ const AboutUs = () => {
                 </div>
                 <div className="hr-straight"></div>
                 <div className="right-side">
-                    <img src={About} className="text-about-us" alt="" />
+                    <img src={About} className="img-about-us" alt="" />
                     <p className="text-about-us">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad

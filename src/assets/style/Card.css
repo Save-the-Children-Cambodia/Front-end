@@ -60,3 +60,130 @@
         }
     }
 }
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap');
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .most-recent {
+        font-family: 'Oswald', sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 20px 0px;
+    }
+    .block-of-card{
+        display: flex;
+        flex-direction: row;
+        gap: 0px 15px;
+        .item-left {
+            display: flex;
+            justify-content: center;
+            .card-pf-img {
+                width: 120px;
+                height: 80px;
+            }
+        }
+        .hr-row {
+            width: 1px;
+            height: 80px;
+            border: solid 1px #000;
+        }
+        .item-right {
+            display: flex;
+            flex-direction: column;
+            .card-title {
+                font-size: 10px;
+                font-weight: bold;
+                font-family: 'Oswald', sans-serif;
+                margin: 0px 0px;
+            }
+            .card-text {
+                font-size: 7px;
+                font-family: 'Lato', sans-serif;
+                width: 180px;
+                margin: 15px 0px 0px 0px;
+            }
+            .watch-now {
+                font-size: 10px;
+                color: #DA291C;
+                font-family: "Oswald", sans-serif;
+                font-size: 10px;
+                display: flex;
+                justify-content: start;
+                font-weight: bold;
+                margin: 10px -5px 0px -5px;
+                background: none;
+                border: none;
+            }
+        }
+    }
+}
+@media screen and (min-width: 600px) and (max-width: 992px) {
+    .card-container {
+        .most-recent {
+            font-size: 25px;
+        }
+        .block-of-card {
+            .item-left {
+                .card-pf-img {
+                    width: 180px;
+                    height: 120px;
+                }
+            }
+            .hr-row {
+                height: 120px;
+            }
+            .item-right {
+                .card-title {
+                    font-size: 15px;
+                }
+                .card-text {
+                    font-size: 12px;
+                    width: 250px;
+                    margin-top: 5px;
+                }
+                .watch-now {
+                    font-size: 15px;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width: 992px) and (max-width: 1600px) {
+    .card-container {
+        .most-recent {
+            font-size: 60px;
+        }
+        .block-of-card {
+            .item-left {
+                .card-pf-img {
+                    width: 250px;
+                    height: 180px;
+                }
+            }
+            .hr-row {
+                height: 180px;
+                width: 2px;
+                border: solid 2px #000;
+            }
+            .item-right {
+                .card-title {
+                    font-size: 25px;
+                }
+                .card-text {
+                    font-size: 18px;
+                    width: 350px;
+                    margin-top: 5px;
+                }
+                .watch-now {
+                    font-size: 25px;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+}

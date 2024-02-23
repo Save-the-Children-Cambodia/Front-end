@@ -3,11 +3,10 @@
     flex-direction: column;
     align-items: center;
     gap: 10px 0px;
-    margin-bottom: 1em;
     .feedback-title {
         color: #000;
         font-family: Oswald;
-        font-size: 35px;
+        font-size: 20px;
         font-weight: 700;
         margin: 0;
     }
@@ -50,6 +49,7 @@
         font-family: Lato;
         font-size: 12px;
         font-weight: 400;
+        padding: 0 10px;
         width: 320px;
     }
     .feedback-area::placeholder {
@@ -70,5 +70,113 @@
         width: 150px;
         height: 35px;
         cursor: pointer;
+    }
+}
+@media screen and (min-width: 1200px) and (max-width: 1520px){  
+    .feedback-container {
+        gap: 30px 0px;
+        .feedback-title {
+            font-size: 60px;
+        }
+        .feedback-text {
+            font-size: 20px;
+        }
+        .email-or-phone {
+            p {
+                font-size: 20px;
+            }
+            .email-area, .phone-area {
+                height: 60px;
+                width: 300px;
+            }
+            .email-area::placeholder, .phone-area::placeholder {
+                font-size: 20px;
+            }
+        }
+        .feedback-area {
+            width: 640px;
+            font-size: 20px;
+        }
+        .feedback-area::placeholder {
+            font-size: 20px;
+        }
+        .send-feedback {
+            font-size: 30px;
+            width: 280px;
+            height: 60px;
+        }
+    }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px){
+    .feedback-container {
+        gap: 30px 0px;
+        .feedback-title {
+            font-size: 60px;
+        }
+        .feedback-text {
+            font-size: 20px;
+        }
+        .email-or-phone {
+            p {
+                font-size: 20px;
+            }
+            .email-area, .phone-area {
+                height: 60px;
+                width: 300px;
+            }
+            .email-area::placeholder, .phone-area::placeholder {
+                font-size: 20px;
+            }
+        }
+        .feedback-area {
+            width: 640px;
+            font-size: 20px;
+        }
+        .feedback-area::placeholder {
+            font-size: 20px;
+        }
+        .send-feedback {
+            font-size: 30px;
+            width: 280px;
+            height: 60px;
+        }
+    }
+}
+@media screen and (min-width: 600px) and (max-width: 991px) {
+    .feedback-container {
+        gap: 5px 0px;
+        .feedback-title {
+            font-size: 25px;
+        }
+        .feedback-text {
+            font-size: 15px;
+        }
+        .email-or-phone {
+            p {
+                font-size: 15px;
+            }
+            .email-area, .phone-area {
+                height: 40px;
+                width: 220px;
+                border-radius: 20px;
+            }
+            .email-area::placeholder, .phone-area::placeholder {
+                font-size: 15px;
+            }
+        }
+        .feedback-area {
+            width: 470px;
+            font-size: 20px;
+        }
+        .feedback-area::placeholder {
+            font-size: 20px;
+        }
+        .send-feedback {
+            margin-top: 10px;
+            font-size: 20px;
+            border-radius: 30px;
+            width: 220px;
+            height: 50px;
+        }
     }
 }
