@@ -1,0 +1,74 @@
+.feedback-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px 0px;
+    margin-bottom: 1em;
+    .feedback-title {
+        color: #000;
+        font-family: Oswald;
+        font-size: 35px;
+        font-weight: 700;
+        margin: 0;
+    }
+    .feedback-text {
+        color: #000;
+        text-align: center;
+        font-family: Lato;
+        font-size: 10px;
+        font-weight: 700;
+        margin: 0;
+    }
+    .email-or-phone {
+        display: flex;
+        flex-direction: row;
+        gap: 0px 10px;
+        align-items: center;
+        p {
+            color: #000;
+            text-align: center;
+            font-family: Lato;
+            font-size: 10px;
+            font-weight: 700;
+        }
+        .email-area, .phone-area {
+            border-radius: 15px;
+            border: 2px solid #808080;
+            height: 30px;
+        }
+        .email-area::placeholder, .phone-area::placeholder {
+            color: #8D8D8D;
+            font-family: Lato;
+            font-size: 12px;
+            font-weight: 400;
+            padding-left:  5px;
+        }
+    }
+    .feedback-area {
+        border-radius: 15px;
+        border: 2px solid #808080;
+        font-family: Lato;
+        font-size: 12px;
+        font-weight: 400;
+        width: 320px;
+    }
+    .feedback-area::placeholder {
+        color: #8D8D8D;
+        font-family: Lato;
+        font-size: 12px;
+        padding-left: 5px;
+        font-weight: 400;
+    }
+    .send-feedback {
+        background-color: #DA291C;
+        color: #FFF;
+        font-family: Oswald;
+        font-size: 15px;
+        font-weight: 700;
+        border: none;
+        border-radius: 20px;
+        width: 150px;
+        height: 35px;
+        cursor: pointer;
+    }
+}

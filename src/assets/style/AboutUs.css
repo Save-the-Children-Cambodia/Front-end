@@ -1,0 +1,39 @@
+.about-container {
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: row;
+    background-color: #DA291C;
+    height: 490px;
+    gap: 0px 20px;
+    .left-side {
+        h1 {
+            color: #FFF;
+            font-family: Oswald;
+            font-size: 35px;
+            font-weight: 700;
+            display: flex;
+            align-items: end;
+        }
+        
+    }
+    .hr-straight {
+        width: 3px;
+        height: 460px;
+        border: solid 3px #fff;
+    }
+    .right-side {
+        display: flex;
+        flex-direction: column;
+        .text-about-us {
+            width: 150px;
+            height: 150px;
+        }
+        .text-about-us {
+            color: #FFF;
+            font-family: Lato;
+            width: 250px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+    }
+}
