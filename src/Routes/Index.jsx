@@ -1,7 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from '../components/Home';
-import Hi from '../components/Hi';
+import Video from '../components/Video';
+import Document from '../components/Document';
 
 
 
@@ -11,7 +12,8 @@ const AppRouter = () => {
         <BrowserRouter>       
             <Routes>
                 <Route path="/" element={<Home />}/>
-                <Route path="/Hi" element={<Hi />}/>
+                <Route path="/Video" element={<Video />}/>
+                <Route path="/Document" element={<Document />}/>
             </Routes>
         </BrowserRouter>
   );
