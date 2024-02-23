@@ -11,14 +11,13 @@ function Banner(){
     const settings = {
         dots: true,
         infinite: true,
-        speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
         speed: 1500,
         autoplaySpeed: 1000,
     };
-        
+
     return (
         <div className="slider-container">
             <Slider {...settings}>

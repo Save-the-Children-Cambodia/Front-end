@@ -3,6 +3,8 @@ import Navbar from '../layout/Navbar'
 import Banner from '../layout/Banner';
 import Menu from '../layout/Menu';
 import Card from '../layout/Card';
+import AboutUs from '../layout/AboutUs';
+import Feedback from '../layout/Feedback';
 
 const Home =() => {
   return (
@@ -11,6 +13,8 @@ const Home =() => {
       <Banner />
       <Menu />
       <Card />
+      <Feedback />
+      <AboutUs />
     </div>
   );
 }

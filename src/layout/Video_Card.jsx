@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/style/Card.css";
 import hello from "../assets/img/oggy1.jpg"
-const Card = () => {
+const Video_Card = () => {
     return (
         <div className="card">
             <div className="card-container">
@@ -42,11 +42,10 @@ const Card = () => {
                         <button className="watch-now">Watch Now</button>
                     </div>
                 </div>
-                <h4 className="most-recentsss"><a href="/Video">See More</a></h4>
             </div>
             
         </div>
     );
 }
 
-export default Card;
+export default Video_Card;

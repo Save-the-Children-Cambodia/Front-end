@@ -23,8 +23,8 @@ export default function SimpleBottomNavigation() {
               }}
           >
 
-              <BottomNavigationAction href='#' label="Videos" icon={<OndemandVideoIcon />} />
-              <BottomNavigationAction href='#' label="Documents" icon={<ArticleIcon />} />
+              <BottomNavigationAction href='/Video' label="Videos" icon={<OndemandVideoIcon />} />
+              <BottomNavigationAction href='/Document' label="Documents" icon={<ArticleIcon />} />
               <BottomNavigationAction href='#' label="Audios" icon={<AudioFileIcon />} />
               <BottomNavigationAction href='#' label="Images" icon={<BrokenImageIcon />} />
 
