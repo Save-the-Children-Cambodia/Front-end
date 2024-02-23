@@ -1,0 +1,28 @@
+/* BackToHome.css */
+.back-button {
+    background-color: #DA291C;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5vh 20vw;
+    cursor: pointer;
+    transition: background-color 0.5s, transform 0.5s;
+}
+
+.back-button:hover {
+    background-color: #A51E17; /* Darker shade of red */
+}
+
+.back-button:active {
+    transform: scale(0.85);
+}
+
+@media (max-width: 600px) {
+  .back-button {
+    margin: 5vw;
+  }
+}

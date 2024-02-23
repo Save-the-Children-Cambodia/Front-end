@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { app, db } from '../firebase.js';
+import './player.css'; // import the CSS file
 
 function Player({ id, category}) {
   const [videoUrl, setVideoUrl] = useState(null);
@@ -23,12 +24,24 @@ function Player({ id, category}) {
   }, [id]);
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', height:'500px'}}>
-      {videoUrl ? (
-        <ReactPlayer url={videoUrl} controls width='50vw' height='auto' />
-      ) : (
-        <p>Loading video...</p>
-      )}
+    <div className="player-container">
+      <div className="video-container">
+        {videoUrl ? (
+          <ReactPlayer 
+            url={videoUrl} 
+            controls 
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0
+            }}
+            width='100%'
+            height='100%'
+          />
+        ) : (
+          <p>Loading video...</p>
+        )}
+      </div>
     </div>
   );
 }

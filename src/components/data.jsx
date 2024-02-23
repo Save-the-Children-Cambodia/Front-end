@@ -5,6 +5,7 @@ import { app, db } from '../firebase.js';
 function VideoData({ id , category}) {
   const [title, setTitle] = useState(null);
   const [description, setDescription] = useState(null);
+  const [upload, setUpload] = useState(null);
 
   useEffect(() => {
     const fetchVideoData = async () => {
@@ -15,6 +16,14 @@ function VideoData({ id , category}) {
         const data = docSnap.data();
         setTitle(data.title);
         setDescription(data.description);
+
+        // Convert Firebase Timestamp to JavaScript Date object
+        const uploadDate = data.Date.toDate();
+
+        // Format the date to a string and remove the time
+        const formattedDate = uploadDate.toLocaleDateString();
+
+        setUpload(formattedDate);
       } else {
         console.log('No such document!');
       }
@@ -24,9 +33,12 @@ function VideoData({ id , category}) {
   }, [id]);
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
-      {title && <h2>{title}</h2>}
-      {description && <p>{description}</p>}
+    <div style={{ height: '100%', flexDirection: 'column', margin:"0vw 10vw"}}>
+      {title && <h2 style={{fontSize:'32px'}}>{title}</h2>}
+      <hr style={{width:'100%', margin:'3vh auto'}}/>
+      {upload && <p style={{fontSize:'16px', fontWeight:'bold'}}>Uploaded on: {upload}</p>}
+      <h3 style={{fontSize:'16px'}}>Description:</h3>
+      {description && <p style={{fontSize:'16px'}}>{description}</p>}
     </div>
   );
 }
