@@ -11,3 +11,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Add some styling to the table */
+.ExcelTable {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 20px auto;
+}
+
+.ExcelTable td,
+.ExcelTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.ExcelTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.ExcelTable tr:hover {
+  background-color: #ddd;
+}
+
+.ExcelTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
+}

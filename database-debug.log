@@ -1,7 +1,4 @@
-14:03:16.624 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
-14:03:16.713 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
-14:09:30.036 [NamespaceSystem-akka.actor.default-dispatcher-8] INFO com.firebase.core.namespace.NamespaceActor - testing-savethechildren successfully activated FBKV (SurveyIdle(0)) wait: 82ms, init: 0ms
-14:22:54.582 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
-14:22:54.596 [NamespaceSystem-akka.actor.default-dispatcher-14] INFO com.firebase.core.namespace.Terminator$Terminator - 1 actors left to terminate: testing-savethechildren
-14:22:54.601 [NamespaceSystem-akka.actor.default-dispatcher-15] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for testing-savethechildren
-14:22:54.605 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.
+15:41:31.492 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+15:41:31.581 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+15:41:54.446 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+15:41:54.451 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.
