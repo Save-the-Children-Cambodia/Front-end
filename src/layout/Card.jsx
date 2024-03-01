@@ -1,12 +1,13 @@
 import React from "react";
 import '../assets/style/Card.css';
+import VideoPlayers from "../components/VideoTesting";
 
 
 function Card (){
     return (
-        <section>
-            
-        </section>
+        <div>
+            <VideoPlayers />
+        </div>
     );
 }
 

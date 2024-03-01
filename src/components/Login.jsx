@@ -1,77 +1,49 @@
 import React, { useState } from 'react';
-import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../firebaseConfig";
-import '../assets/css/login.css'; // Import CSS file
+import { useNavigate } from 'react-router-dom';
+import { UserAuth } from '../AuthProvider';
 
-function Login() {
-  const [email, setEmail] = useState('');
+const Login = () => {
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); 
+  const { signIn } = UserAuth();
 
-  const handleGoogle = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
+    setErrorMessage(''); 
     try {
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      if (result) {
-        console.log("User Logged in");
-        window.location.href = "/admin";
-      }
+      await signIn(email, password);
+      navigate('/admin'); 
     } catch (error) {
-      console.error('Error signing in with Google:', error);
-    }
-  };
-
-  const handleLoginWithEmail = async () => {
-    try {
-      const result = await signInWithEmailAndPassword(auth, email, password);
-      if (result) {
-        window.location.href = "/admin";
-      }
-    } catch (error) {
-      console.error('Error signing in with email and password:', error);
-    }
-  };
-
-  const handleForgotPassword = async () => {
-    try {
-      await sendPasswordResetEmail(auth, email);
-      console.log("Password reset email sent");
-      // Redirect user to a page indicating that password reset email has been sent
-    } catch (error) {
-      console.error('Error sending password reset email:', error);
+      setErrorMessage(error.message);
+      console.log(error.message);
     }
   };
 
   return (
-    <div className='login-container'>
-      <h2>Login</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className='input-field'
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className='input-field'
-      />
-      <button onClick={handleLoginWithEmail} className='login-button'>
-        Sign in
-      </button>
-      <button onClick={handleGoogle} className='login-button google'>
-        Sign in with Google
-      </button>
-      <button onClick={() =>window.location.href=' /form'} className='login-button'>
-        Sign-up
-      </button>
-      <a href="#" onClick={handleForgotPassword} className='forgot-password'>
-        Forgot Password?
-      </a>
+    <div style={{ maxWidth: '400px', margin: '0 auto', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#f9f9f9' }}>
+      <h2 style={{ marginTop: '0', marginBottom: '20px', textAlign: 'center' }}>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{ width: '100%', padding: '10px', marginBottom: '10px', border: '1px solid #ccc', borderRadius: '5px', boxSizing: 'border-box' }}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{ width: '100%', padding: '10px', marginBottom: '10px', border: '1px solid #ccc', borderRadius: '5px', boxSizing: 'border-box' }}
+        />
+        <button type="submit" style={{ width: '100%', padding: '10px', border: 'none', borderRadius: '5px', backgroundColor: '#007bff', color: '#fff', cursor: 'pointer' }}>Login</button>
+      </form>
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
     </div>
   );
-}
+};
 
 export default Login;
