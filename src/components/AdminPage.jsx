@@ -4,12 +4,16 @@ import { db } from '../firebaseConfig.js';
 import "../assets/css/AddingData.css"
 import { UserAuth } from '../AuthProvider.js';
 import { useNavigate } from 'react-router-dom';
+import { storage } from '../firebaseConfig.js';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 function AdminPage() {
+  const [fileUpload, setFileUpload] = useState(null); 
   const {user, logout} = UserAuth();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [url, setUrl] = useState('');
+  const [imageURL, setUrlImage] = useState('');
   const [date, setDate] = useState('');
   const [filename, setFilename] = useState('');
   const [format, setFormat] = useState('');
@@ -17,20 +21,46 @@ function AdminPage() {
   const [type, setType] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-        await logout()
-        navigate('/')
+        await logout();
+        navigate('/');
         console.log("User logged out");
     } catch(e){
-      console.log(e.message)
+      console.log(e.message);
     }
-  }
+  };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const uploadFile = async () => {
+    try {
+      if (fileUpload === null) return;
+
+      // Create a storage reference with a unique filename
+      const fileRef = ref(storage, `videos/${fileUpload.name}`);
+
+      // Upload file to Firebase Storage
+      await uploadBytes(fileRef, fileUpload);
+
+      // Get the download URL of the uploaded file
+      const downloadURL = await getDownloadURL(fileRef);
+
+      // Call the handleSubmit function to add the file details to Firestore
+      handleSubmit({ url: downloadURL });
+
+      // Clear fileUpload state after successful upload
+      setFileUpload(null);
+
+      // Show success message
+      setSuccessMessage('File uploaded successfully!');
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      setErrorMessage('Error uploading file. Please try again.');
+    }
+  };
+
+  const handleSubmit = async (fileData) => {
     try {
       let collectionName = '';
       if (type === 'video') {
@@ -49,13 +79,15 @@ function AdminPage() {
         format,
         topic,
         type,
-        url,
+        url: fileData.url,
+        imageURL
       });
 
       setSuccessMessage("File added successfully!");
       setTitle('');
       setDescription('');
       setUrl('');
+      setUrlImage('');
       setDate('');
       setFilename('');
       setFormat('');
@@ -71,7 +103,7 @@ function AdminPage() {
     <div className="admin-container">
       <h1 className='head'>Add File</h1>
       <p>User Email: {user && user.email}</p>
-      <form onSubmit={handleSubmit} className="admin-form">
+      <form onSubmit={(e) => { e.preventDefault(); uploadFile(); }} className="admin-form">
         <div className="form-group">
           <label>Title:</label>
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
@@ -81,8 +113,14 @@ function AdminPage() {
           <textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
         </div>
         <div className="form-group">
-          <label>URL:</label>
-          <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} required />
+          <div>
+            <label>FILE:</label>
+            <input type="file" onChange={(e) => setFileUpload(e.target.files[0])}/>
+          </div>
+        </div>
+        <div className="form-group">
+          <label>UrlImage:</label>
+          <input type="text" value={imageURL} onChange={(e) => setUrlImage(e.target.value)} />
         </div>
         <div className="form-group">
           <label>Date:</label>
@@ -120,7 +158,6 @@ function AdminPage() {
         </button></center>
       </div>
     </div>
-    
   );
 }
 
