@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebaseConfig.js'; // Assuming you have initialized and exported your Firestore instance
- // Importing the CSS file
+import { db } from '../firebaseConfig.js'; 
+import "../assets/css/player.css";
 
 function VideoPlayers() {
   const [videos, setVideos] = useState([]);
@@ -30,15 +30,25 @@ function VideoPlayers() {
     fetchVideos();
   }, []);
 
-// Function to limit the description to 50 words
-const limitDescription = (description) => {
-  if (!description) return ''; // Check if description is undefined or null
-  const words = description.split(' ');
-  if (words.length > 50) {
-    return words.slice(0, 50).join(' ') + '...';
-  }
-  return description;
-};
+  const limitDescription = (description) => {
+    if (!description) return ''; 
+    const words = description.split(' ');
+    if (words.length > 50) {
+      return words.slice(0, 50).join(' ') + '...';
+    }
+    return description;
+  };
+
+  const formatDate = (timestamp) => {
+    if (timestamp instanceof Date) {
+      // If timestamp is already a Date object, return it
+      return timestamp.toDateString(); // Example format: "Sat Jan 01 2022"
+    } else {
+      // If timestamp is not a Date object, assume it's a Firestore Timestamp
+      const dateObject = new Date(timestamp.seconds * 1000); // Convert seconds to milliseconds
+      return dateObject.toDateString(); // Example format: "Sat Jan 01 2022"
+    }
+  };
 
   return (
     <div>
@@ -51,8 +61,12 @@ const limitDescription = (description) => {
             <div className="video-item" key={video.id}>
               <h2 className="video-title">{video.title}</h2>
               <ReactPlayer className="react-player" url={video.url} controls />
-              <p className="video-description">{limitDescription(video.description)}</p>
-              
+              <div style={{ height: '100%', flexDirection: 'column', margin:"0vw 10vw"}}>
+                <hr style={{width:'100%', margin:'3vh auto'}}/>
+                <p style={{fontSize:'16px', fontWeight:'bold'}}>Uploaded on: {formatDate(video.Date)}</p>
+                <h3 style={{fontSize:'16px'}}>Description:</h3>
+                <p style={{fontSize:'16px'}}>{limitDescription(video.description)}</p>
+              </div>
             </div>
           ))}
         </div>
