@@ -1,24 +1,67 @@
-import React from 'react';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Home from '../components/Home';
-import Video from '../components/Video';
-import Document from '../components/Document';
-import VideoPlayer from '../components/videoPlayer';
+// import React from 'react';
+// import {BrowserRouter, Routes, Route} from "react-router-dom";
+// import Home from '../components/Home';
+// import Video from '../components/Video';
+// import Document from '../components/Document';
 
-
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "../components/Home";
+import VideoPlayers from "../components/VideoTesting";
+import ImageGallery from "../components/ImageTesting";
+import AudioGallery from "../components/AudioTesting";
+import PDFViewer from "../components/DocuTesting";
+import Login from "../components/Login";
+import AdminPage from "../components/AdminPage";
+import { AuthContextProvider } from "../AuthProvider"; // Import AuthProvider
+import ProtectedRoute from "./ProtectedRoute";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import UpdateFiles from "../components/Update";
+import BannerUploadPage from "../components/BannerUpload";
+import VideoPlayer from "../components/videoPlayer";
 
 const AppRouter = () => {
-  return (
-    
-        <BrowserRouter>       
-            <Routes>
-                <Route path="/" element={<Home />}/>
-                <Route path="/Video" element={<Video />}/>
-                <Route path="/Document" element={<Document />}/>
-                <Route path="/player" element={<VideoPlayer />}/>
-            </Routes>
-        </BrowserRouter>
-  );
+    return (
+        <AuthContextProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    {/* <Route path="/Video" element={<Video />}/> */}
+                    {/* <Route path="/Document" element={<Document />}/> */}
+                    {/* <Route path="/player" element={<VideoPlayer />}/> */}
+                    <Route path="/video" element={<VideoPlayers />} />
+                    <Route path="/image" element={<ImageGallery />} />
+                    <Route path="/audio" element={<AudioGallery />} />
+                    <Route path="/document" element={<PDFViewer />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/update" element={<UpdateFiles />} />
+                    <Route
+                        path="/admin"
+                        element={
+                            <ProtectedRoute>
+                                <AdminPage />
+                                <BannerUploadPage />
+                                <UpdateFiles />
+                            </ProtectedRoute>
+                        }
+                    />
+                </Routes>
+            </BrowserRouter>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                transition="bounce"
+            />
+        </AuthContextProvider>
+    );
 };
-
 export default AppRouter;

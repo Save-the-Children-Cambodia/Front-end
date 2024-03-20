@@ -1,0 +1,82 @@
+
+
+body {
+    font-family: sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5; /* Light gray background */
+  }
+  
+  .admin-container {
+    width: 80%; /* Adjust width as needed */
+    margin: 0 auto; /* Center container */
+    padding: 30px;
+    border-radius: 5px;
+    background-color: #fff; /* White background for content */
+  }
+  
+  .head1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    background-color: black;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px 10px gray;
+  }
+  
+  .admin-form {
+    display: grid; /* Grid layout for form groups */
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 20px; /* Spacing between form groups */
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input,
+  textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .btn-submit {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-submit:hover {
+    background-color: #3e8e41;
+  }
+  
+  .success-message,
+  .error-message {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  .success-message {
+    color: green;
+  }
+  
+  .error-message {
+    color: red;
+  }
+  

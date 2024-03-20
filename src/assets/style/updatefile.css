@@ -1,0 +1,103 @@
+.edit-delete-files-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .edit-delete-files-heading {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .select-file {
+    margin-bottom: 20px;
+  }
+  
+  .select-file label {
+    font-weight: bold;
+  }
+  
+  .select-file-dropdown {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .file-details {
+    margin-top: 20px;
+  }
+  
+  .file-details-heading {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .file-field {
+    margin-bottom: 10px;
+  }
+  
+  .edit-label {
+    font-weight: bold;
+  }
+  
+  .edit-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .file-actions {
+    margin-top: 20px;
+  }
+  
+  .edit-button,
+  .delete-button,
+  .save-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .edit-button {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .save-button {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .success-message,
+  .error-message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .success-message {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .error-message {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  

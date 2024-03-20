@@ -1,0 +1,98 @@
+.video-players-container {
+  max-width: 100%;
+  padding: 20px;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sort-select {
+  width: 100%;
+}
+
+.video-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.video-item {
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #fff; /* Add a background color to make the shadow visible */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.video-title {
+  margin-top: 0;
+}
+
+.video-player-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-details-container {
+  margin-top: 20px;
+}
+
+.upload-date {
+  font-style: italic;
+}
+
+.description-heading {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.description {
+  margin: 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.moreButton,
+.backButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.moreButton:hover,
+.backButton:hover {
+  background-color: #0056b3;
+}
+
+@media screen and (max-width: 768px) {
+  .video-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
