@@ -19,7 +19,7 @@ import { ToastContainer } from "react-toastify";
 import UpdateFiles from "../components/Update";
 import BannerUploadPage from "../components/BannerUpload";
 import VideoPlayer from "../components/videoPlayer";
-import NewPage from '../components/NewPage'
+import NewPage from '../layout/NewPage'
 
 const AppRouter = () => {
     return (
