@@ -16,10 +16,10 @@ import AdminPage from "../components/AdminPage";
 import { AuthContextProvider } from "../AuthProvider"; // Import AuthProvider
 import ProtectedRoute from "./ProtectedRoute";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import UpdateFiles from "../components/Update";
 import BannerUploadPage from "../components/BannerUpload";
 import VideoPlayer from "../components/videoPlayer";
+import NewPage from '../components/NewPage'
 
 const AppRouter = () => {
     return (
@@ -36,6 +36,8 @@ const AppRouter = () => {
                     <Route path="/document" element={<PDFViewer />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/update" element={<UpdateFiles />} />
+                    <Route path="/newpage" element={<NewPage />} />
+                    
                     <Route
                         path="/admin"
                         element={
