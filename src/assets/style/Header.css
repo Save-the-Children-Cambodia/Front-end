@@ -1,0 +1,44 @@
+
+.header-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin: 0;
+    align-items: center;
+    *{
+        margin: 0;
+    }
+}
+.header-container-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    h6{
+        float: left;
+        font-size: 20px;
+    }
+    p{
+        font-size: 15px;
+        float: left;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .header-container{
+        img{
+            height: 45px;
+            width: 45px;
+        }
+    }
+    .header-container-text{
+        h6{
+            float: left;
+            font-size: 12px;
+        }
+        p{
+            font-size: 9px;
+            float: left;
+        }
+    }
+}

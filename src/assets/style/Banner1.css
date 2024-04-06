@@ -1,0 +1,28 @@
+.slick-arrow
+{
+    display: none !important;
+}
+.slider-container{
+    *{
+        margin: 0;
+    }
+}
+.bn-banner-img img{
+    width: 100%;
+    height: 40vh;
+}
+@media screen and (max-width:500px){
+    .bn-banner-img img{
+        height: 20vh !important;
+    }
+}
+@media screen and (max-width:1000px){
+    .bn-banner-img img{
+        height: 35vh;
+    }
+}
+@media screen and (max-width:1500px){
+    .bn-banner-img img{
+        height: 40vh;
+    }
+}

@@ -132,6 +132,7 @@ function AdminPage() {
             <option value="video">Video</option>
             <option value="image">Image</option>
             <option value="audio">Audio</option>
+            <option value="pdfs">Pdf</option>
           </select>
         </div>
         <button type="submit" className="btn-submit">Add File</button>
