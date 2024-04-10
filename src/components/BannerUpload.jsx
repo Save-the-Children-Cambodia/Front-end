@@ -37,20 +37,18 @@ function BannerUploadPage() {
   return (
     <div className="admin-container">
       <h1 className='head'>Upload Banner</h1>
-      <p>User Email: {user && user.email}</p>
-      <div className="form-group">
-        <label>Title:</label>
-        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-      </div>
-      <div className="form-group">
-        <label>URL:</label>
-        <input type="url" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} required />
-      </div>
-      <button onClick={handleUrlUpload}>Upload Banner</button>
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <div>
-        <br></br>
+      <div className="admin-form">
+        <div className="form-group">
+          <label>Title:</label>
+          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+        </div>
+        <div className="form-group">
+          <label>URL:</label>
+          <input type="url" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} required />
+        </div>
+        <button className='btn-submit' onClick={handleUrlUpload}>Upload Banner</button>
+        {successMessage && <p className="success-message">{successMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
     </div>
   );
