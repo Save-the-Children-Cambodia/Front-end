@@ -1,71 +1,278 @@
-/* player.css */
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+/* player.css */  
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap');
+.css-8n6ywc-MuiTypography-root {
+  font-family: Lato!important;
+}
+.audio-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1440px;
+  * {
+    margin: 0;
   }
-  
-  h1 {
-    text-align: center;
+  .sort-container {
     margin-bottom: 20px;
   }
-  
-  .search-container {
+  .search-input {
+    width: 70%;
+    padding: 20px;
+    margin: 50px 0 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 20px;
+    background-image: url("../img/search.svg");
+    background-repeat: no-repeat;
+    background-position: 97% 50%;
+    background-size: 25px;
+  }
+  .search-input::placeholder {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .search-input {
-    flex: 1;
-    margin-right: 10px;
-  }
-  
-  .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-  }
-  
-  .card {
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-  
-  .card-content {
-    text-align: center;
-  }
-  
-  .card-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .card-description {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 10px;
-  }
-  
-  .card-actions {
-    display: flex;
     justify-content: center;
+    font-size: 20px;
+  }
+  .audio-card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 70vw;
+    .audio-image {
+      width: 24vw!important;
+      height: 47vh!important;
+    }
+    .audio-detail {
+      .audio-title {
+        font-weight: bold;
+        font-size: 40px;
+      }
+      .audio-description {
+        color: black;
+        font-size: 20px;
+        font-weight: 400;
+      }
+      
+    }
+    .audio-display {
+      display: flex;
+    }
+    .css-17cm5o9-MuiStack-root {
+      align-items: start;
+    }
+    .play-button {
+      display: flex;
+      justify-content: center;
+      height: 60px;
+      width: 60px;
+      background-color: #007bff;
+      .css-i4bv87-MuiSvgIcon-root  {
+        font-size: 40px;
+        color: white;
+      }
+    }
+  }
+}   
+@media screen and (min-width:1280px) and (max-width:1439px) {
+  .audio-container {
+    width: 1280px;
+  }
+  .sort-container {
+    margin-bottom: 18px;
+  }
+  .search-input {
+    padding: 18px;
+    margin: 45px 0 9px 0;
+    font-size: 18px;
+    background-size: 22.5px;
+  }
+  .search-input::placeholder {
+    font-size: 18px;
+  }
+  .audio-card-container {
+    gap: 36px;
+    width: 62vw;
+    .audio-image {
+      width: 21.6vw!important;
+      height: 40.2vh!important;
+    }
+    .audio-detail {
+      .audio-title {
+        font-size: 36px;
+      }
+      .audio-description {
+        font-size: 18px;
+      }
+    }
+    .play-button {
+      height: 54px;
+      width: 54px;
+      .css-i4bv87-MuiSvgIcon-root  {
+        font-size: 36px;
+      }
+    }
+  }
+} 
+@media screen and (min-width:1024px) and (max-width:1279px) {
+  .audio-container {
+    width: 1024px;
+  }
+  .sort-container {
+    margin-bottom: 14px;
+  }
+  .search-input {
+    padding: 14px;
+    margin: 35px 0 7px 0;
+    font-size: 14px;
+    border-radius: 14px;
+    background-size: 17.5px;
+  }
+  .search-input::placeholder {
+    font-size: 14px;
+  }
+  .audio-card-container {
+    gap: 28px;
+    width: 49vw;
+    .audio-image {
+      width: 16.8vw!important;
+      height: 32.9vh!important;
+    }
+    .audio-detail {
+      .audio-title {
+        font-size: 28px;
+      }
+      .audio-description {
+        font-size: 14px;
+      }
+    }
+    .play-button {
+      height: 42px;
+      width: 42px;
+      .css-i4bv87-MuiSvgIcon-root  {
+        font-size: 28px;
+      }
+    }
+  }
+} 
+@media screen and (min-width:768px) and (max-width:1023px) {
+  .audio-container {
+    width: 768px;
+  }
+  .sort-container {
+    margin-bottom: 10px;
+  }
+  .search-input {
+    padding: 10px;
+    margin: 25px 0 5px 0;
+    font-size: 10px;
+    border-radius: 10px;
+    background-size: 12.5px;
+  }
+  .search-input::placeholder {
+    font-size: 10px;
+  }
+  .audio-card-container {
+    gap: 20px;
+    width: 35vw;
+    .audio-image {
+      width: 12vw!important;
+      height: 23.5vh!important;
+    }
+    .audio-detail {
+      .audio-title {
+        font-size: 20px;
+      }
+      .audio-description {
+        font-size: 10px;
+      }
+    }
+    .play-button {
+      height: 30px;
+      width: 30px;
+      .css-i4bv87-MuiSvgIcon-root  {
+        font-size: 20px;
+      }
+    }
+  }
+} 
+@media screen and (min-width:568px) and (max-width:767px) {
+  .audio-container {
+    width: 568px;
+  }
+  .sort-container {
+    margin-bottom: 8px;
+  }
+  .search-input {
+    padding: 8px;
+    margin: 20px 0 4px 0;
+    font-size: 8px;
+    border-radius: 8px;
+    background-size: 10px;
+  }
+  .search-input::placeholder {
+    font-size: 8px;
+  }
+  .audio-card-container {
+    gap: 16px;
+    width: 28vw;
+    .audio-image {
+      width: 9.6vw!important;
+      height: 10.2vh!important;
+    }
+    .audio-detail {
+      .audio-title {
+        font-size: 16px;
+      }
+      .audio-description {
+        font-size: 8px;
+      }
+    }
+    .play-button {
+      height: 24px;
+      width: 24px;
+      .css-i4bv87-MuiSvgIcon-root  {
+        font-size: 16px;
+      }
+    }
+  }
+} 
+@media screen and (min-width:375px) and (max-width:567px) {
+  .audio-container {
+    width: 375px;
+  }
+  .sort-container {
+    margin-bottom: 5px;
+  }
+  .search-input {
+    padding: 5px;
+    margin: 12.5px 0 2.5px 0;
+    font-size: 5px;
+    border-radius: 5px;
+    background-size: 6.25px;
+  }
+  .search-input::placeholder {
+    font-size: 5px;
+  }
+  .audio-card-container {
     gap: 10px;
+    width: 17.5vw;
+    .audio-image {
+      width: 6vw!important;
+      height: 12vh!important;
+    }
+    .audio-detail {
+      .audio-title {
+        font-size: 10px;
+      }
+      .audio-description {
+        font-size: 5px;
+      }
+    }
+    .play-button {
+      height: 15px;
+      width: 15px;
+      .css-i4bv87-MuiSvgIcon-root  {
+        font-size: 10px;
+      }
+    }
   }
-  
-  .load-more-button {
-    margin-top: 20px;
-    width: 100%;
-  }
-  
+} 
