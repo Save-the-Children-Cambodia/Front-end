@@ -17,10 +17,10 @@ const AppRouter = () => {
         <AuthContextProvider>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/video" element={<VideoPlayers />} />
+                    {/* <Route path="/video" element={<VideoPlayers />} />
                     <Route path="/image" element={<ImageGallery />} />
                     <Route path="/audio" element={<AudioGallery />} />
-                    <Route path="/document" element={<PDFViewer />} />
+                    <Route path="/document" element={<PDFViewer />} /> */}
                     <Route path="/login" element={<Login />} />
                     <Route path="/update" element={<UpdateFiles />} />
                     <Route path="/" element={<NewPage />} />
