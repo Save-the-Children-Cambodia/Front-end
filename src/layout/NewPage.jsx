@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from 'react';
 import '../assets/style/NewPage.css'
+import CarouselRun from '../components/carouselrun.jsx'
 import Header from '../components/Header.jsx';
 import Banner from '../components/Banner.jsx';
 import Feedback from '../components/Feedback.jsx';
@@ -10,6 +11,7 @@ const NewPage = () =>{
         <div>
             <Header />
             <Banner />
+            <CarouselRun/>
             <Feedback />
             <Aboutus />
         </div>

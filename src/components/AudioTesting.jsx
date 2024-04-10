@@ -16,7 +16,7 @@ function AudioGallery() {
   const [loading, setLoading] = useState(true);
   const [currentAudio, setCurrentAudio] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [displayCount, setDisplayCount] = useState(4);
+  const [displayCount, setDisplayCount] = useState(3);
   const [sortBy, setSortBy] = useState('newest');
 
   useEffect(() => {
@@ -47,6 +47,15 @@ function AudioGallery() {
     }
   };
 
+  const limitDescription = (description) => {
+    if (!description) return '';
+    const words = description.split(' ');
+    if (words.length > 50) {
+      return words.slice(0, 50).join(' ') + '...';
+    }
+    return description;
+  };
+
   const isYouTubeLink = (url) => {
     return url.includes('youtube.com') || url.includes('youtu.be');
   };
@@ -58,6 +67,16 @@ function AudioGallery() {
   const extractYouTubeVideoId = (url) => {
     const match = url.match(/[?&]v=([^&]+)/);
     return match ? match[1] : null;
+  };
+
+  const formatDate = (timestamp) => {
+    if (!timestamp) return ''; // Handle undefined timestamp
+    if (timestamp instanceof Date) {
+      return timestamp.toDateString();
+    } else {
+      const dateObject = new Date(timestamp.seconds * 1000);
+      return dateObject.toDateString();
+    }
   };
 
   const filteredAudios = audios.filter(audio =>
@@ -74,40 +93,43 @@ function AudioGallery() {
 
   // Function to load more audios
   const loadMoreAudios = () => {
-    setDisplayCount(prevCount => prevCount + 4);
+    setDisplayCount(prevCount => prevCount + 3);
   };
 
   return (
-    <div>
-      <h1>Audio Gallery</h1>
-      <div>
-        <input
+    <div className='audio-container'>
+      <input
           type="text"
           value={searchQuery}
+          className='search-input'
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search by title..."
-        />
-        <Button onClick={() => setSortBy('newest')}>Sort by Newest</Button>
-        <Button onClick={() => setSortBy('oldest')}>Sort by Oldest</Button>
+      />
+      <div className="sort-container">
+        <label htmlFor="sorts">Sort by:</label>
+        <select name="sorts" id="sorts">
+          <option value="newest" onClick={() => setSortBy('newest')}>Newest to Oldest</option>
+          <option value="oldest" onClick={() => setSortBy('oldest')}>Oldest to Newest</option>
+        </select>
       </div>
+      
+      
       {loading ? (
         <p>Loading audios...</p>
       ) : (
-        <div>
+        <div className='audio-card-container'>
           {sortedAudios.slice(0, displayCount).map(audio => (
-            <Card
-              key={audio.id}
-              variant="outlined"
-              sx={{
+            <Card key={audio.id} variant="outlined"
+                sx={{
                 p: 2,
                 width: { xs: '100%', sm: 'auto' },
                 display: 'flex',
                 flexDirection: { xs: 'column', sm: 'row' },
-                alignItems: 'center',
                 gap: 2,
               }}
             >
               <CardMedia
+                className='audio-image'
                 component="img"
                 width="100"
                 height="100"
@@ -118,22 +140,25 @@ function AudioGallery() {
                 }}
               />
               <Stack direction="column" alignItems="center" spacing={1} useFlexGap>
-                <div>
-                  <Typography color="text.primary" fontWeight="semiBold">
+                <div className='audio-detail'>
+                  <Typography className='audio-title' color="text.primary" fontWeight="semiBold">
                     {audio.title}
                   </Typography>
+                  <p>{formatDate(audio.date)}</p>
                   <Typography
+                    className='audio-description'
                     variant="caption"
                     color="text.secondary"
                     fontWeight="medium"
-                    textAlign="center"
                     sx={{ width: '100%' }}
                   >
-                    {audio.description}
+                    {limitDescription(audio.description)}
                   </Typography>
                 </div>
-                <Stack direction="row" alignItems="center" spacing={1} useFlexGap>
+                <div className="audio-display">
+                  <Stack className='play-container' spacing={1} useFlexGap>
                   <IconButton
+                    className='play-button'
                     aria-label={currentAudio && currentAudio.id === audio.id ? 'Pause music' : 'Play music'}
                     onClick={() => playAudio(audio)}
                     sx={{ mx: 1 }}
@@ -161,7 +186,7 @@ function AudioGallery() {
                       <iframe
                         title="SoundCloud audio player"
                         width="100%"
-                        height="166"
+                        height="100%"
                         scrolling="no"
                         frameborder="no"
                         allow="autoplay"
@@ -175,6 +200,8 @@ function AudioGallery() {
                     )}
                   </div>
                 )}
+                </div>
+                
               </Stack>
             </Card>
           ))}

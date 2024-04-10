@@ -10,7 +10,7 @@ function VideoPlayers() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOption, setSortOption] = useState('newest');
-  const [displayCount, setDisplayCount] = useState(3);
+  const [displayCount, setDisplayCount] = useState(4);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -91,7 +91,6 @@ function VideoPlayers() {
 
   return (
     <div className="video-players-container">
-      <h1 className='c'>Videos</h1>
       <div className="filter-container">
         <input
           type="text"
@@ -114,17 +113,17 @@ function VideoPlayers() {
         <div className="video-container">
           {sortedVideos.slice(0, displayCount).map(video => (
             <div className="video-item" key={video.id}>
-              <h2 className="video-title">{video.title}</h2>
               <div className="video-player-wrapper">
                 <ReactPlayer
                   className="react-player"
                   url={video.url}
                   controls
-                  width="100%"
-                  height="auto"
+                  width="120%"
                 />
               </div>
+              
               <div className="video-details-container">
+                <h2 className="video-title">{video.title}</h2>
                 <p className="upload-date">Uploaded on: {formatDate(video.Date)}</p>
                 <h3 className="description-heading">Description:</h3>
                 <p className="description">{limitDescription(video.description)}</p>
@@ -133,13 +132,15 @@ function VideoPlayers() {
           ))}
         </div>
       )}
-      {sortedVideos.length > displayCount && (
+      <div className="more-back">
+        {sortedVideos.length > displayCount && (
+          <div className='button-container'>
+            <button onClick={handleLoadMore} className="moreButton">More</button>
+          </div>
+        )}
         <div className='button-container'>
-          <button onClick={handleLoadMore} className="moreButton">More</button>
+          <button onClick={() => navigate('/')} className="backButton"> Back </button>
         </div>
-      )}
-      <div className='button-container'>
-        <button onClick={() => navigate('/')} className="backButton"> Back </button>
       </div>
     </div>
   );

@@ -8,8 +8,9 @@ function ImageGallery() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [displayedImages, setDisplayedImages] = useState(3);
+  const [displayedImages, setDisplayedImages] = useState(4);
   const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState('newest');
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -46,16 +47,28 @@ function ImageGallery() {
   };
 
   const handleShowMoreImages = () => {
-    setDisplayedImages(prev => prev + 3);
+    setDisplayedImages(prev => prev + 4);
   };
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
 
+  const filteredImages = images.filter(image =>
+    image.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const sortedImages = [...filteredImages].sort((a, b) => {
+    if (sortBy === 'newest') {
+      return new Date(b.date) - new Date(a.date);
+    } else {
+      return new Date(a.date) - new Date(b.date);
+    }
+  });
+  
+
   return (
     <div className="image-gallery-container">
-      <h1 className="image-gallery-header">Image Gallery</h1>
       <div className="search-bar">
         <input
           type="text"
@@ -64,6 +77,13 @@ function ImageGallery() {
           onChange={handleSearchChange}
           className='search-input'
         />
+        <div>
+          <label htmlFor="sorts">Sort by:</label>
+          <select name="sorts" id="sorts">
+            <option value="newest" onClick={() => setSortBy('newest')}>Newest to Oldest</option>
+            <option value="oldest" onClick={() => setSortBy('oldest')}>Oldest to Newest</option>
+          </select>
+        </div>
       </div>
       <div className="image-grid">
         {loading ? (

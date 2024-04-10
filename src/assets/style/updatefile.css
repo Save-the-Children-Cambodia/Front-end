@@ -1,64 +1,61 @@
 .edit-delete-files-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-  }
-  
+  width: 1440px;
+  font-family: Lato;
+  margin: 50px 0;
   .edit-delete-files-heading {
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
-    color: #333;
   }
-  
   .select-file {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     margin-bottom: 20px;
+    label {
+      width: 70%;
+      display: flex;
+      justify-content: start;
+      font-weight: bold;
+    }
+    .select-file-dropdown {
+      width: 70%;
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
   }
-  
-  .select-file label {
-    font-weight: bold;
-  }
-  
-  .select-file-dropdown {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
   .file-details {
-    margin-top: 20px;
-  }
-  
-  .file-details-heading {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .file-field {
-    margin-bottom: 10px;
-  }
-  
-  .edit-label {
-    font-weight: bold;
-  }
-  
-  .edit-input {
     width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .file-actions {
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: center;
     margin-top: 20px;
+    .file-details-heading {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .file-field {
+      width: 70%;
+      margin-bottom: 10px;
+      .edit-label {
+        width: 10%;
+        font-weight: bold;
+      }
+      .edit-input {
+        width: 100%;
+        padding: 8px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+    } 
+    .file-actions {
+      margin-top: 20px;
+    }
   }
-  
   .edit-button,
   .delete-button,
   .save-button {
@@ -100,4 +97,4 @@
     background-color: #dc3545;
     color: #fff;
   }
-  
+}    

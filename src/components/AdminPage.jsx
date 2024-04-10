@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig.js';
 import "../assets/style/AddingData.css"
+import RichTextEditor from './rte.jsx';
 import { UserAuth } from '../AuthProvider.js';
 import { useNavigate } from 'react-router-dom';
 
@@ -91,15 +92,31 @@ function AdminPage() {
   return (
     <div className="admin-container">
       <h1 className='head'>Add File</h1>
-      <p>User Email: {user && user.email}</p>
+      <div className="user-container">
+          <p>User Email: {user && user.email}</p>
+          <button onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+      
+      
       <form onSubmit={(e) => { e.preventDefault(); uploadFile(); }} className="admin-form">
+        <div className="form-group">
+          <label>Type:</label>
+          <select className='selection' value={type} onChange={(e) => setType(e.target.value)} required>
+            <option value="">Select type</option>
+            <option value="video">Video</option>
+            <option value="image">Image</option>
+            <option value="audio">Audio</option>
+          </select>
+        </div>
         <div className="form-group">
           <label>Title:</label>
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
         </div>
         <div className="form-group">
           <label>Description:</label>
-          <textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
+          <RichTextEditor className="textarea" value={description} onChange={(e) => setDescription(e.target.value)} required />
         </div>
         <div className="form-group">
           <label>URL:</label>
@@ -139,12 +156,6 @@ function AdminPage() {
       </form>
       {successMessage && <p className="success-message">{successMessage}</p>}
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <div>
-        <br></br>
-        <center><button onClick={handleLogout}>
-          Logout
-        </button></center>
-      </div>
     </div>
   );
 }
