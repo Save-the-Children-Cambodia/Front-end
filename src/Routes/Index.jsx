@@ -6,7 +6,6 @@
 
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../components/Home";
 import VideoPlayers from "../components/VideoTesting";
 import ImageGallery from "../components/ImageTesting";
 import AudioGallery from "../components/AudioTesting";
@@ -24,10 +23,6 @@ const AppRouter = () => {
         <AuthContextProvider>
             <BrowserRouter>
                 <Routes>
-                    {/* <Route path="/" element={<Home />} /> */}
-                    {/* <Route path="/Video" element={<Video />}/> */}
-                    {/* <Route path="/Document" element={<Document />}/> */}
-                    {/* <Route path="/player" element={<VideoPlayer />}/> */}
                     <Route path="/video" element={<VideoPlayers />} />
                     <Route path="/image" element={<ImageGallery />} />
                     <Route path="/audio" element={<AudioGallery />} />
