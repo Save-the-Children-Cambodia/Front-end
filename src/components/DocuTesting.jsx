@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebaseConfig'; // Assuming you have initialized Firestore
-import '../assets/style/ViewPDFPage.css'; // Import CSS file for styling
+import { collection, getDocs, query, orderBy, where } from 'firebase/firestore'; // Import necessary Firestore functions
+import { db } from '../firebaseConfig';
+import '../assets/style/ViewPDFPage.css';
 
 function ViewPDFPage() {
   const [pdfs, setPdfs] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortOption, setSortOption] = useState('newest');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'pdfs'));
-        const pdfList = [];
-        querySnapshot.forEach((doc) => {
-          pdfList.push(doc.data());
-        });
+        let q = collection(db, 'pdfs');
+
+        if (searchQuery) {
+          const searchQueryLower = searchQuery.toLowerCase();
+          q = query(q, orderBy('title'), 
+                      where('titleLower', '>=', searchQueryLower),
+                      where('titleLower', '<=', searchQueryLower + '\uf8ff'));
+        } else {
+          q = query(q, orderBy('Date', sortOption === 'newest' ? 'desc' : 'asc'));
+        }
+
+        const querySnapshot = await getDocs(q);
+        const pdfList = querySnapshot.docs.map(doc => doc.data());
         setPdfs(pdfList);
       } catch (error) {
         console.error('Error fetching PDFs:', error);
@@ -21,19 +31,42 @@ function ViewPDFPage() {
     };
 
     fetchData();
-  }, []);
+  }, [searchQuery, sortOption]);
+
+  const handleSearchInputChange = event => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSortChange = event => {
+    setSortOption(event.target.value);
+  };
 
   return (
     <div className="view-pdf-container">
-      <h1 className="view-pdf-heading">View PDFs</h1>
+      <div className="input-container">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={handleSearchInputChange}
+          placeholder="Search PDF titles..."
+          className="search-input"
+        />
+        <div className='sort-select'>
+          <label htmlFor="sortOption">Sort by:</label>
+          <select id="sortOption" value={sortOption} onChange={handleSortChange}>
+            <option value="newest">Newest to Oldest</option>
+            <option value="oldest">Oldest to Newest</option>
+          </select>
+        </div>
+      </div>
       <div className="pdf-list">
         {pdfs.map((pdf, index) => (
           <div key={index} className="pdf-item">
             <h2 className="pdf-title">{pdf.title}</h2>
             <img src={pdf.imageURL} alt={pdf.title} />
-           <button className='button-a'>
-            <a href={pdf.url} target="_blank" rel="noopener noreferrer" className="pdf-link">{pdf.filename}</a>
-           </button>
+            <button className='button-a'>
+              <a href={pdf.url} target="_blank" rel="noopener noreferrer" className="pdf-link">{pdf.filename}</a>
+            </button>
             <p className="pdf-description">{pdf.description}</p>
             <p className="pdf-date">Date: {pdf.Date}</p>
           </div>

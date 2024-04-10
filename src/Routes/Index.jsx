@@ -24,7 +24,7 @@ const AppRouter = () => {
         <AuthContextProvider>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    {/* <Route path="/" element={<Home />} /> */}
                     {/* <Route path="/Video" element={<Video />}/> */}
                     {/* <Route path="/Document" element={<Document />}/> */}
                     {/* <Route path="/player" element={<VideoPlayer />}/> */}
@@ -34,7 +34,7 @@ const AppRouter = () => {
                     <Route path="/document" element={<PDFViewer />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/update" element={<UpdateFiles />} />
-                    <Route path="/newpage" element={<NewPage />} />
+                    <Route path="/" element={<NewPage />} />
                     
                     <Route
                         path="/admin"
