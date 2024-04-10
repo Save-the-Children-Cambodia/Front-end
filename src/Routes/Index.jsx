@@ -1,9 +1,3 @@
-// import React from 'react';
-// import {BrowserRouter, Routes, Route} from "react-router-dom";
-// import Home from '../components/Home';
-// import Video from '../components/Video';
-// import Document from '../components/Document';
-
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import VideoPlayers from "../components/VideoTesting";
