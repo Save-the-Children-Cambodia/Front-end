@@ -49,8 +49,8 @@ function VideoPlayers() {
   const limitDescription = (description) => {
     if (!description) return '';
     const words = description.split(' ');
-    if (words.length > 50) {
-      return words.slice(0, 50).join(' ') + '...';
+    if (words.length > 70) {
+      return words.slice(0, 70).join(' ') + '...';
     }
     return description;
   };

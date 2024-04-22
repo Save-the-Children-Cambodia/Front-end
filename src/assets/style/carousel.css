@@ -6,6 +6,7 @@
     font-family: Lato;
 
     .indicators {
+        width: 80%;
         margin-top: 3em !important;
         background-color: #D9D9D9;
         border-radius: 20px;
@@ -13,6 +14,7 @@
         align-items: center;
         font-weight: bold;
         #slide {
+            width: 20vw;
             padding: 20px 80px;
             border-radius: 20px;
             .icon {
@@ -21,79 +23,16 @@
                 justify-content: center;
             }
             span {
+                display: flex;
+                justify-content: center;
                 font-size: 20px;
             }
         }
     }
 }
-@media screen and (min-width:1280px) and (max-width:1439px) {
+@media screen and (min-width:210px) and (max-width:1200px) {
     .carousel-container {
         .indicators {
-            border-radius: 18px;
-            #slide {
-                padding: 18px 72px;
-                .icon {
-                    font-size: 27px;
-                }
-                span {
-                    font-size: 18px;
-                }
-            }
-        }
-    }
-}
-@media screen and (min-width:1024px) and (max-width:1279px) {
-    .carousel-container {
-        .indicators {
-            border-radius: 14px;
-            #slide {
-                padding: 14px 56px;
-                .icon {
-                    font-size: 21px;
-                }
-                span {
-                    font-size: 14px;
-                }
-            }
-        }
-    }
-}
-@media screen and (min-width:768px) and (max-width:1023px) {
-    .carousel-container {
-        .indicators {
-            border-radius: 10px;
-            #slide {
-                padding: 10px 40px;
-                .icon {
-                    font-size: 15px;
-                }
-                span {
-                    font-size: 10px;
-                }
-            }
-        }
-    }
-}
-@media screen and (min-width:568px) and (max-width:767px) {
-    .carousel-container {
-        .indicators {
-            border-radius: 8px;
-            #slide {
-                padding: 8px 32px;
-                .icon {
-                    font-size: 12px;
-                }
-                span {
-                    font-size: 8px;
-                }
-            }
-        }
-    }
-}
-@media screen and (min-width:375px) and (max-width:567px) {
-    .carousel-container {
-        .indicators {
-            border-radius: 5px;
             #slide {
                 padding: 5px 20px;
                 .icon {

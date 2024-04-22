@@ -128,7 +128,8 @@ function AudioGallery() {
                 gap: 2,
               }}
             >
-              <CardMedia
+              <div className="make-ctimg">
+                <CardMedia
                 className='audio-image'
                 component="img"
                 width="100"
@@ -139,6 +140,8 @@ function AudioGallery() {
                   width: { xs: '100%', sm: 100 },
                 }}
               />
+              </div>
+              
               <Stack direction="column" alignItems="center" spacing={1} useFlexGap>
                 <div className='audio-detail'>
                   <Typography className='audio-title' color="text.primary" fontWeight="semiBold">
