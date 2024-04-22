@@ -1,7 +1,10 @@
 .view-pdf-container {
   padding: 20px;
   font-family: Lato;
-  width: 1440px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .input-container {
     margin-top: 40px;
     width: 100%;
@@ -70,49 +73,10 @@
 }
 @media screen and (min-width: 1280px) and (max-width:1439px) {
   .view-pdf-container {
-    width: 1280px;
-    padding: 18px;
-    .input-container {
-      margin-top: 36px;
-      margin-bottom: 27px;
-      .search-input {
-        padding: 18px;
-        margin-bottom: 9px;
-        border-radius: 18px;
-        font-size: 18px;
-        background-size: 22.5px;
-      }
-      .search-input::placeholder {
-        font-size: 18px;
-      }
-    }
     .pdf-list {
-      gap: 18px;
       .pdf-item {
-        width: 18vw;
-        border-radius: 4.5px;
-        padding: 13.5px;
-        .pdf-title {
-          font-size: 18px;
-          margin-top: 9px;
-        }
         img {
-          width: 18vw;
           height: 27vh;
-        }
-        .button-a {
-          margin-top: 18px;
-          border-radius: 9px;
-          height: 36px;
-          .pdf-link {
-            font-size: 16.2px;
-          }
-        }
-        .pdf-description {
-          margin-top: 9px;
-        }
-        .pdf-date {
-          margin-top: 9px;
         }
       }
     }
@@ -120,207 +84,41 @@
 }
 @media screen and (min-width:1024px) and (max-width:1279px) {
   .view-pdf-container {
-    padding: 14px;
-    width: 1024px;
-    .input-container {
-      margin-top: 28px;
-      margin-bottom: 21px;
-      .search-input {
-        padding: 14px;
-        margin-bottom: 7px;
-        border-radius: 14px;
-        font-size: 14px;
-        background-size: 17.5px;
-      }
-      .search-input::placeholder {
-        font-size: 14px;
-      }
-    }
     .pdf-list {
-      gap: 14px;
       .pdf-item {
-        width: 14vw;
-        border-radius: 3.5px;
-        padding: 10.5px;
-        .pdf-title {
-          font-size: 14px;
-          margin-top: 7px;
-        }
         img {
-          width: 14vw;
           height: 21vh;
         }
-        .button-a {
-          margin-top: 14px;
-          border-radius: 7px;
-          height: 28px;
-          .pdf-link {
-            font-size: 12.6px;
-          }
-        }
-        .pdf-description {
-          margin-top: 7px;
-        }
-        .pdf-date {
-          margin-top: 7px;
-        }
       }
     }
   }
 }
-@media screen and (min-width:768px) and (max-width:1023px) {
+@media screen and (min-width:568px) and (max-width:1023px) {
   .view-pdf-container {
-    padding: 10px;
-    width: 768px;
-    .input-container {
-      margin-top: 20px;
-      margin-bottom: 15px;
-      .search-input {
-        padding: 10px;
-        margin-bottom: 5px;
-        border-radius: 10px;
-        font-size: 10px;
-        background-size: 12.5px;
-      }
-      .search-input::placeholder {
-        font-size: 10px;
-      }
-    }
     .pdf-list {
-      gap: 10px;
+      flex-wrap: wrap;
+      width: 80vw;
       .pdf-item {
-        width: 10vw;
-        border-radius: 2.5px;
-        padding: 7.5px;
-        .pdf-title {
-          font-size: 10px;
-          margin-top: 5px;
-        }
+        width: 30vw;
         img {
-          width: 10vw;
+          width: 30vw;
           height: 15vh;
         }
-        .button-a {
-          margin-top: 10px;
-          border-radius: 5px;
-          height: 20px;
-          .pdf-link {
-            font-size: 9px;
-          }
-        }
-        .pdf-description {
-          margin-top: 5px;
-        }
-        .pdf-date {
-          margin-top: 5px;
-        }
       }
     }
   }
 }
-@media screen and (min-width:568px) and (max-width:767px) {
+@media screen and (min-width:210px) and (max-width:567px) {
   .view-pdf-container {
-    padding: 8px;
-    width: 568px;
-    .input-container {
-      margin-top: 16px;
-      margin-bottom: 12px;
-      .search-input {
-        padding: 8px;
-        margin-bottom: 4px;
-        border-radius: 8px;
-        font-size: 8px;
-        background-size: 10px;
-      }
-      .search-input::placeholder {
-        font-size: 8px;
-      }
-      .sort-select {
-        label {
-          font-size: 8px; 
-        }
-        select {
-          font-size: 8px;
-        }
-      }
-    }
     .pdf-list {
-      gap: 8px;
-      .pdf-item {
-        width: 8vw;
-        border-radius: 2px;
-        padding: 6px;
-        .pdf-title {
-          font-size: 8px;
-          margin-top: 4px;
-        }
-        img {
-          width: 8vw;
-          height: 12vh;
-        }
-        .button-a {
-          margin-top: 8px;
-          border-radius: 4px;
-          height: 16px;
-          .pdf-link {
-            font-size: 6.4px;
-          }
-        }
-        .pdf-description {
-          margin-top: 4px;
-        }
-        .pdf-date {
-          margin-top: 4px;
-        }
-      }
-    }
-  }
-}
-@media screen and (min-width:375px) and (max-width:567px) {
-  .view-pdf-container {
-    padding: 5px;
-    width: 375px;
-    .input-container {
-      margin-top: 10px;
-      margin-bottom: 7.5px;
-      .search-input {
-        padding: 5px;
-        margin-bottom: 2.5px;
-        border-radius: 5px;
-        font-size: 2.5px;
-        background-size: 6.5px;
-      }
-      .search-input::placeholder {
-        font-size: 5px;
-      }
-    }
-    .pdf-list {
+      flex-wrap: wrap;
+      width: 80vw;
       gap: 5px;
       .pdf-item {
-        width: 5vw;
-        border-radius: 1.5px;
-        padding: 3.8px;
-        .pdf-title {
-          font-size: 5px;
-          margin-top: 2.5px;
-        }
+        width: 70vw;
         img {
-          width: 5vw;
-          height: 7.5vh;
-        }
-        .button-a {
-          margin-top: 5px;
-          border-radius: 2.5px;
-          height: 10px;
-          .pdf-link {
-            font-size: 4.5px;
-          }
-        }
-        .pdf-description {
-          margin-top: 2.5px;
-        }
-        .pdf-date {
-          margin-top: 2.5px;
+          width: 70vw;
+          height: 20vh;
         }
       }
     }
