@@ -148,16 +148,6 @@ function AdminPage() {
           <label>Topic:</label>
           <input type="text" value={topic} onChange={(e) => setTopic(e.target.value)} required />
         </div>
-        <div className="form-group">
-          <label>Type:</label>
-          <select value={type} onChange={(e) => setType(e.target.value)} required>
-            <option value="">Select type</option>
-            <option value="video">Video</option>
-            <option value="image">Image</option>
-            <option value="audio">Audio</option>
-            <option value="pdfs">Pdf</option>
-          </select>
-        </div>
         <button type="submit" className="btn-submit">Add File</button>
       </form>
       {successMessage && <p className="success-message">{successMessage}</p>}
