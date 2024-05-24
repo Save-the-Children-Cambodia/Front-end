@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig.js';
 import "../assets/style/AddingData.css"
+import OtherSelection from './otherselection.jsx';
 import RichTextEditor from './rte.jsx';
 import { UserAuth } from '../AuthProvider.js';
 import { useNavigate } from 'react-router-dom';
+import { Editor } from '@jeremyling/react-material-ui-rich-text-editor';
 
 function AdminPage() {
   const [urlUpload, setUrlUpload] = useState('');
-  const {user, logout} = UserAuth();
+  const { user, logout } = UserAuth();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [url, setUrl] = useState('');
@@ -18,16 +20,17 @@ function AdminPage() {
   const [format, setFormat] = useState('');
   const [topic, setTopic] = useState('');
   const [type, setType] = useState('');
+  const [selectedTags, setSelectedTags] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-        await logout();
-        navigate('/');
-        console.log("User logged out");
-    } catch(e){
+      await logout();
+      navigate('/');
+      console.log("User logged out");
+    } catch (e) {
       console.log(e.message);
     }
   };
@@ -36,12 +39,9 @@ function AdminPage() {
     try {
       if (!urlUpload) return;
 
-
       handleSubmit({ url: urlUpload });
 
-
       setUrlUpload('');
-
 
       setSuccessMessage('File uploaded successfully!');
     } catch (error) {
@@ -70,12 +70,13 @@ function AdminPage() {
         topic,
         type,
         url: fileData.url,
-        imageURL
+        imageURL,
+        tags: selectedTags, // Store selected tags
       });
 
       setSuccessMessage("File added successfully!");
       setTitle('');
-      setDescription('');
+      setDescription('<p></p>');
       setUrl('');
       setUrlImage('');
       setDate('');
@@ -83,6 +84,7 @@ function AdminPage() {
       setFormat('');
       setTopic('');
       setType('');
+      setSelectedTags([]);
     } catch (error) {
       console.error('Error adding file:', error);
       setErrorMessage('Error adding file. Please try again.');
@@ -115,8 +117,12 @@ function AdminPage() {
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
         </div>
         <div className="form-group">
+          <label>Tags:</label>
+          <OtherSelection onTagsChange={setSelectedTags} />
+        </div>
+        <div className="form-group">
           <label>Description:</label>
-          <RichTextEditor className="textarea" value={description} onChange={(e) => setDescription(e.target.value)} required />
+          <Editor className="textarea" html={description} updateHtml={(html)=>setDescription(html)} required />
         </div>
         <div className="form-group">
           <label>URL:</label>
