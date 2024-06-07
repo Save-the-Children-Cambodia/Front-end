@@ -1,9 +1,9 @@
 import React from "react";
 import '../assets/style/Feedbacks.css';
-import linkedin from '../assets/img/linkedin.svg'
-import facebook from '../assets/img/facebook.svg'
-import youtube from '../assets/img/youtube.svg'
-import x from '../assets/img/x-twitter.svg'
+import linkedin from '../assets/img/linkedin.svg';
+import facebook from '../assets/img/facebook.svg';
+import youtube from '../assets/img/youtube.svg';
+import x from '../assets/img/x-twitter.svg';
 
 
 const Feedback = () => {
@@ -31,6 +31,7 @@ const Feedback = () => {
                         <a href=""><img src={youtube} alt="" /></a>
                     </div>
                 </div>
+                <div className="fb-break-line1"></div>
             </div>
             <div className="fb-feedback-container1">
                 <div className="fb-container-text">
