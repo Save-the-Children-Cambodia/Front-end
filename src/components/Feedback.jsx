@@ -36,7 +36,7 @@ const Feedback = () => {
             <div className="fb-feedback-container1">
                 <div className="fb-container-text">
                     <input className="fb-input" type="text" placeholder="Gmail"/>
-                    <p>or</p>
+                    <p style={{color: "white"}}>or</p>
                     <input className="fb-input" type="text" placeholder="Phone Number"/>
                 </div>
                 <textarea className="fb-textarea" name="" id="" cols="30" rows="10" placeholder="បញ្ចេញមតិ"></textarea>
