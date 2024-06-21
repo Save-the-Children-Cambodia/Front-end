@@ -3,6 +3,7 @@ import Carousel from "../components/carouselA.jsx"
 import AdminPage from "../components/AdminPage.jsx";
 import BannerUploadPage from "../components/BannerUpload.jsx";
 import UpdateFiles from "../components/Update.jsx";
+import Campaign from "../components/campaign.jsx";
 
 
 const Admin = () => {
@@ -12,7 +13,9 @@ const Admin = () => {
     <div><BannerUploadPage/></div>;
     const Slide3 = () =>
     <div><UpdateFiles/></div>
-    const slides = [<Slide1 />, <Slide2 />, <Slide3/>];
+    const Slide4 = () =>
+    <div><Campaign/></div>
+    const slides = [<Slide1 />, <Slide2 />, <Slide3/>, <Slide4/>];
     return (
         <div className="app">
             <Carousel slides={slides} />

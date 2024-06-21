@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faFileAlt, faMusic, faImage } from '@fortawesome/free-solid-svg-icons';
+import { text } from '@fortawesome/fontawesome-svg-core';
+
 
 const Carousel = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,6 +19,8 @@ const Carousel = ({ slides }) => {
         return { text: "Upload Banners" };
       case 2: 
         return { text: "Edit/Delete Files"}
+      case 3:
+        return { text: "Campaign"}
       default:
         return { icon: null, text: "" };
     }
