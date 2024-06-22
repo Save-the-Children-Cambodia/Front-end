@@ -120,8 +120,7 @@ function VideoPlayers() {
                   controls
                   width="120%"
                 />
-              </div>
-              
+              </div>              
               <div className="video-details-container">
                 <h2 className="video-title">{video.title}</h2>
                 <p className="upload-date">Uploaded on: {formatDate(video.Date)}</p>
@@ -138,9 +137,6 @@ function VideoPlayers() {
             <button onClick={handleLoadMore} className="moreButton">More</button>
           </div>
         )}
-        <div className='button-container'>
-          <button onClick={() => navigate('/')} className="backButton"> Back </button>
-        </div>
       </div>
     </div>
   );

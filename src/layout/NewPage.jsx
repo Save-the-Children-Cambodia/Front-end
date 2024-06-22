@@ -13,7 +13,6 @@ const NewPage = () =>{
             <Banner />
             <CarouselRun/>
             <Feedback />
-            <Aboutus />
         </div>
     );
 }

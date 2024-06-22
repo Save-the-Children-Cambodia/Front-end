@@ -59,6 +59,8 @@ function AdminPage() {
         collectionName = 'Image';
       } else if (type === 'audio') {
         collectionName = 'Audio';
+      } else if (type === 'file') {
+        collectionName = 'pdfs';
       }
 
       await addDoc(collection(db, collectionName), {
@@ -110,6 +112,7 @@ function AdminPage() {
             <option value="video">Video</option>
             <option value="image">Image</option>
             <option value="audio">Audio</option>
+            <option value="pdfs">Document</option>
           </select>
         </div>
         <div className="form-group">

@@ -1,4 +1,3 @@
-
 .fb-container{
     display: flex;
     flex-direction: row;
@@ -128,11 +127,11 @@
 @media screen and (max-width: 500px) {
     .fb-aboutus-container1
     {
-        width: 93% !important;
+        width: 92% !important;
     }
     .fb-feedback-container1
     {
-        width: 93%;
+        width: 92%!important;
     }
 }
 
@@ -140,10 +139,13 @@
     
     .fb-container{
         flex-direction: column-reverse;
+        .fb-aboutus-container1 {
+            margin-top: 0!important;
+        }
     }
     .fb-aboutus-container1
     {
-        width: 96%;
+        width: 96vw;
         margin-right: 1em;
         .fb-break-line1
         {
@@ -152,7 +154,7 @@
     }
     .fb-feedback-container1
     {
-        width: 96%;
+        width: 96vw;
     }
     .fb-aboutus-container1
     {
@@ -181,3 +183,4 @@
         
     }
 }
+
