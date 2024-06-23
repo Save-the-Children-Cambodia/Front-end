@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
-import { db, storage } from '../firebaseConfig.js';
+import { db } from '../firebaseConfig.js';
 import "../assets/style/AddingData.css"
 import OtherSelection from './otherselection.jsx';
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import RichTextEditor from './rte.jsx';
 import { UserAuth } from '../AuthProvider.js';
 import { useNavigate } from 'react-router-dom';
 import { Editor } from '@jeremyling/react-material-ui-rich-text-editor';
 
 function AdminPage() {
+  const [urlUpload, setUrlUpload] = useState('');
   const { user, logout } = UserAuth();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -19,8 +20,9 @@ function AdminPage() {
   const [format, setFormat] = useState('');
   const [topic, setTopic] = useState('');
   const [type, setType] = useState('');
-  const [file, setFile] = useState(null);
   const [selectedTags, setSelectedTags] = useState([]);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -33,44 +35,22 @@ function AdminPage() {
     }
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-    setUrl(''); // Clear URL input when a file is selected
-  };
-
-  const handleUrlChange = (e) => {
-    setUrl(e.target.value);
-    setFile(null); // Clear file input when a URL is entered
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!url && !file) {
-      alert("A URL or file is required");
-      return;
-    }
-
+  const uploadFile = async () => {
     try {
-      let fileURL = url;
+      if (!urlUpload) return;
 
-      if (file) {
-        // Upload file to Firebase Storage
-        const storageRef = ref(storage, `files/${file.name}`);
-        await uploadBytes(storageRef, file);
-        fileURL = await getDownloadURL(storageRef);
-      }
+      handleSubmit({ url: urlUpload });
 
-      // Submit form with the file URL
-      await submitToFirestore({ url: fileURL });
+      setUrlUpload('');
 
-      alert('Upload successful!');
+      setSuccessMessage('File uploaded successfully!');
     } catch (error) {
-      console.error('Error uploading file and saving URL:', error);
-      alert('Error uploading file and saving URL');
+      console.error('Error uploading file:', error);
+      setErrorMessage('Error uploading file. Please try again.');
     }
   };
 
-  const submitToFirestore = async (fileData) => {
+  const handleSubmit = async (fileData) => {
     try {
       let collectionName = '';
       if (type === 'video') {
@@ -79,7 +59,7 @@ function AdminPage() {
         collectionName = 'Image';
       } else if (type === 'audio') {
         collectionName = 'Audio';
-      } else if (type === 'pdfs') {
+      } else if (type === 'file') {
         collectionName = 'pdfs';
       }
 
@@ -93,41 +73,38 @@ function AdminPage() {
         type,
         url: fileData.url,
         imageURL,
-        tags: selectedTags,
+        tags: selectedTags, // Store selected tags
       });
 
-      alert("File added successfully!");
-      resetForm();
+      setSuccessMessage("File added successfully!");
+      setTitle('');
+      setDescription('<p></p>');
+      setUrl('');
+      setUrlImage('');
+      setDate('');
+      setFilename('');
+      setFormat('');
+      setTopic('');
+      setType('');
+      setSelectedTags([]);
     } catch (error) {
       console.error('Error adding file:', error);
-      alert('Error adding file. Please try again.');
+      setErrorMessage('Error adding file. Please try again.');
     }
-  };
-
-  const resetForm = () => {
-    setTitle('');
-    setDescription('<p></p>');
-    setUrl('');
-    setUrlImage('');
-    setDate('');
-    setFilename('');
-    setFormat('');
-    setTopic('');
-    setType('');
-    setSelectedTags([]);
-    setFile(null);
   };
 
   return (
     <div className="admin-container">
       <h1 className='head'>Add File</h1>
       <div className="user-container">
-        <p>User Email: {user && user.email}</p>
-        <button onClick={handleLogout}>
-          Logout
-        </button>
-      </div>
-      <form onSubmit={handleSubmit} className="admin-form">
+          <p>User Email: {user && user.email}</p>
+          <button onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+      
+      
+      <form onSubmit={(e) => { e.preventDefault(); uploadFile(); }} className="admin-form">
         <div className="form-group">
           <label>Type:</label>
           <select className='selection' value={type} onChange={(e) => setType(e.target.value)} required>
@@ -148,24 +125,11 @@ function AdminPage() {
         </div>
         <div className="form-group">
           <label>Description:</label>
-          <Editor className="textarea" html={description} updateHtml={(html) => setDescription(html)} required />
+          <Editor className="textarea" html={description} updateHtml={(html)=>setDescription(html)} required />
         </div>
         <div className="form-group">
           <label>URL:</label>
-          <input
-            type="text"
-            value={url}
-            onChange={handleUrlChange}
-            disabled={file !== null}
-            required={!file}
-          />
-          <label>File:</label>
-          <input
-            type="file"
-            onChange={handleFileChange}
-            disabled={url !== ''}
-            required={!url}
-          />
+          <input type="url" value={urlUpload} onChange={(e) => setUrlUpload(e.target.value)} required />
         </div>
         <div className="form-group">
           <label>UrlImage:</label>
@@ -189,6 +153,8 @@ function AdminPage() {
         </div>
         <button type="submit" className="btn-submit">Add File</button>
       </form>
+      {successMessage && <p className="success-message">{successMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 }

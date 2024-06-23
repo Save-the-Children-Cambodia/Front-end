@@ -4,6 +4,7 @@ import VideoTesting from './VideoTesting.jsx';
 import PDFViewer from "./DocuTesting";
 import AudioGallery from "./AudioTesting.jsx";
 import ImageGallery from './ImageTesting.jsx';
+import FileUpload from './file_upload.jsx';
 
 
 const Slide1 = () => 
