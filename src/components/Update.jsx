@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { collection, getDocs, deleteDoc, updateDoc, doc } from 'firebase/firestore';
 import { db } from '../firebaseConfig.js';
 import "../assets/style/updatefile.css";
+import ReactHtmlParser from 'react-html-parser'; // <-- New code
+import { Editor } from '@jeremyling/react-material-ui-rich-text-editor'; // <-- New code
 
 function UpdateFiles() {
   const [files, setFiles] = useState([]);
@@ -106,13 +108,22 @@ function UpdateFiles() {
               {Object.entries(selectedFile.data).map(([field, value]) => (
                 <div key={field} className="file-field">
                   <label htmlFor={`edit-${field}`} className="edit-label">{field}: </label>
-                  <input
-                    type="text"
-                    id={`edit-${field}`}
-                    value={editedFields[field] || value}
-                    onChange={(e) => handleFieldChange(field, e.target.value)}
-                    className="edit-input"
-                  />
+                  {field === 'description' ? (
+                    <div className="form-group">
+                      <label>Description:</label>
+                      <Editor className="textarea" html={editedFields[field] || value} updateHtml={(html) => handleFieldChange(field, html)} required />
+                      {/* New code: Use ReactHtmlParser to parse the HTML string */}
+                      <div className="textarea">{ReactHtmlParser(editedFields[field] || value)}</div> {/* <-- New code */}
+                    </div>
+                  ) : (
+                    <input
+                      type="text"
+                      id={`edit-${field}`}
+                      value={editedFields[field] || value}
+                      onChange={(e) => handleFieldChange(field, e.target.value)}
+                      className="edit-input"
+                    />
+                  )}
                 </div>
               ))}
               <div className="file-actions">
