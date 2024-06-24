@@ -134,7 +134,7 @@ function VideoPlayers() {
       <div className="more-back">
         {sortedVideos.length > displayCount && (
           <div className='button-container'>
-            <button onClick={handleLoadMore} className="moreButton">More</button>
+            <button onClick={handleLoadMore} className="moreButton">LOAD MORE</button>
           </div>
         )}
       </div>
