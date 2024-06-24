@@ -8,6 +8,9 @@ import { UserAuth } from '../AuthProvider.js';
 import { useNavigate } from 'react-router-dom';
 import { Editor } from '@jeremyling/react-material-ui-rich-text-editor';
 
+// New code: Import ReactHtmlParser
+import ReactHtmlParser from 'react-html-parser'; // <-- New code
+
 function AdminPage() {
   const { user, logout } = UserAuth();
   const [title, setTitle] = useState('');
@@ -149,6 +152,8 @@ function AdminPage() {
         <div className="form-group">
           <label>Description:</label>
           <Editor className="textarea" html={description} updateHtml={(html) => setDescription(html)} required />
+          {/* New code: Use ReactHtmlParser to parse the HTML string */}
+          <div className="textarea">{ReactHtmlParser(description)}</div> {/* <-- New code */}
         </div>
         <div className="form-group">
           <label>URL:</label>
