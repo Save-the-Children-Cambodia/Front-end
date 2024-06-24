@@ -86,6 +86,7 @@ function UpdateFiles() {
           <option value="Image">Image</option>
           <option value="Audio">Audio</option>
           <option value="pdfs">PDFs</option> {/* Add PDF option */}
+          <option value="Banner">Banner</option>
         </select>
       </div>
       {selectedFileType && (
