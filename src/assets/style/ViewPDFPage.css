@@ -1,11 +1,26 @@
+.video-players-container
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  font-family: Lato;
+  margin-top: 50px;
+}
+@media screen and (min-width:210px) and (max-width:1024px) {
+  .video-players-container {
+    margin-top: 35px;
+  }
+}
+
 .view-pdf-container {
-  padding: 20px;
+  /* padding: 20px; */
   font-family: Lato;
   display: flex;
   flex-direction: column;
   align-items: center;
   .input-container {
-    margin-top: 40px;
+    /* margin-top: 40px; */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -18,17 +33,18 @@
       margin-bottom: 10px;
       border: 1px solid #ccc;
       border-radius: 20px;
-      font-size: 20px;
+      font-size: 16px;
       background-image: url("../img/search.svg");
       background-repeat: no-repeat;
       background-position: 97% 50%;
       background-size: 25px;
+      height: 0.2em;
     }
     .search-input::placeholder {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 16px;
     }
   }
   .pdf-list {

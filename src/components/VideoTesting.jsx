@@ -100,8 +100,8 @@ function VideoPlayers() {
           className="search-input"
         />
         <div className='sort-select'>
-          <label htmlFor="sortOption">Sort by:</label>
-          <select id="sortOption" value={sortOption} onChange={handleSortChange}>
+          <label htmlFor="sortOption" className='sortOption'>Sort by:</label>
+          <select id="sortOption" className='sortOptionmore' value={sortOption} onChange={handleSortChange}>
             <option value="newest">Newest to Oldest</option>
             <option value="oldest">Oldest to Newest</option>
           </select>

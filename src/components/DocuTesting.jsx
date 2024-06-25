@@ -42,7 +42,7 @@ function ViewPDFPage() {
   };
 
   return (
-    <div className="view-pdf-container">
+    <div className="view-pdf-container video-players-container">
       <div className="input-container">
         <input
           type="text"
