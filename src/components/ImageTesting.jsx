@@ -98,7 +98,7 @@ function ImageGallery() {
         )}
       </div>
       {images.length > displayedImages && (
-        <center> <button onClick={handleShowMoreImages} className='more-button'>Show More</button> </center>
+        <center> <button onClick={handleShowMoreImages} className='more-button'>LOAD MORE</button> </center>
       )}
       {selectedImage && (
         <Modal image={selectedImage} onClose={handleCloseModal} />

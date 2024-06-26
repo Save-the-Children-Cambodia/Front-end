@@ -65,18 +65,16 @@
     }
   }
   .more-button{
-    margin-top: 40px;
-    padding: 20px 60px;
-    font-size: 25px;
+    margin: 20px 0;
+    font-size: 14px;
     border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #fff;
+    color: #DA291C;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   .more-button:hover {
-    background-color: #0056b3;
+    color: #8e0900;
   }
 }
 @media screen and (min-width:210px) and (max-width:1280px) {
@@ -122,11 +120,11 @@
         }
       }
     }
-    .more-button {
+    /* .more-button {
       margin-top: 36px;
       padding: 18px 54px;
       font-size: 22.5px;
       border-radius: 4.5px;
-    }
+    } */
   }
 }
