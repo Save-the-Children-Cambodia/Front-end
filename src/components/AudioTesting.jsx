@@ -97,13 +97,13 @@ function AudioGallery() {
   };
 
   return (
-    <div className='audio-container'>
+    <div className='audio-container video-players-container'>
       <input
           type="text"
           value={searchQuery}
           className='search-input'
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search by title..."
+          placeholder="ស្វែងរកសារសម្លេងតាមរយះចំណងជើង..."
       />
       <div className="sort-container">
         <label htmlFor="sorts">Sort by:</label>

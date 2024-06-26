@@ -96,11 +96,11 @@ function VideoPlayers() {
           type="text"
           value={searchQuery}
           onChange={handleSearchInputChange}
-          placeholder="Search video titles..."
+          placeholder="ស្វែងរកវិដេអូតាមរយះចំណងជើង..."
           className="search-input"
         />
         <div className='sort-select'>
-          <label htmlFor="sortOption" className='sortOption'>Sort by:</label>
+          <label htmlFor="sortOption">Sort by:</label>
           <select id="sortOption" className='sortOptionmore' value={sortOption} onChange={handleSortChange}>
             <option value="newest">Newest to Oldest</option>
             <option value="oldest">Oldest to Newest</option>

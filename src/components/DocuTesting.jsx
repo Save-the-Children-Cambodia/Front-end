@@ -48,7 +48,7 @@ function ViewPDFPage() {
           type="text"
           value={searchQuery}
           onChange={handleSearchInputChange}
-          placeholder="Search PDF titles..."
+          placeholder="ស្វែងរកឯកសារតាមរយះចំណងជើង..."
           className="search-input"
         />
         <div className='sort-select'>
