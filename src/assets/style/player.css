@@ -165,3 +165,93 @@ html {
   }
     
 } */
+@media screen and (min-width: 350px) and (max-width: 500px) {
+  .video-title {
+    font-size: 15px!important;
+  }
+  .upload-date {
+    margin-top: 0.7em;
+  }
+  .description-heading{
+    font-size: 13px!important;
+  }
+  .description
+  {
+    font-size: 12px!important;
+    span{
+      font-size: 12px!important;
+    }
+  }
+}
+@media screen and (min-width: 501px) and (max-width: 700px) {
+  .video-title {
+    font-size: 15px!important;
+  }
+  .upload-date {
+    margin-top: 0.7em;
+  }
+  .description-heading{
+    font-size: 13px!important;
+  }
+  .description
+  {
+    font-size: 12px!important;
+    span{
+      font-size: 12px!important;
+    }
+  }
+}
+@media screen and (min-width: 701px) and (max-width: 900px) {
+  .video-title {
+    font-size: 16px!important;
+  }
+  .upload-date {
+    margin-top: 0.7em;
+  }
+  .description-heading{
+    font-size: 14px!important;
+  }
+  .description
+  {
+    font-size: 14px!important;
+    span{
+      font-size: 14px!important;
+    }
+  }
+}
+@media screen and (min-width: 901px) and (max-width: 1100px) {
+  .video-title {
+    font-size: 17px!important;
+  }
+  .upload-date {
+    margin-top: 0.7em;
+  }
+  .description-heading{
+    font-size: 15px!important;
+  }
+  .description
+  {
+    font-size: 15px!important;
+    span{
+      font-size: 15px!important;
+    }
+  }
+}
+@media screen and (min-width: 1101px) {
+  .video-title {
+    font-size: 20px!important;
+  }
+  .upload-date {
+    margin-top: 0.7em;
+  }
+  .description-heading{
+    font-size: 19px!important;
+  }
+  .description
+  {
+    font-size: 20px!important;
+    span{
+      font-size: 20px!important;
+    }
+  }
+}

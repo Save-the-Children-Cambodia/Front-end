@@ -68,11 +68,11 @@ function ImageGallery() {
   
 
   return (
-    <div className="image-gallery-container">
+    <div className="image-gallery-container video-players-container">
       <div className="search-bar">
         <input
           type="text"
-          placeholder="Search by title..."
+          placeholder="ស្វែងរករូបភាពតាមរយះចំណងជើង..."
           value={searchQuery}
           onChange={handleSearchChange}
           className='search-input'

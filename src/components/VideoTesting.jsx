@@ -124,7 +124,7 @@ function VideoPlayers() {
               <div className="video-details-container">
                 <h2 className="video-title">{video.title}</h2>
                 <p className="upload-date">Uploaded on: {formatDate(video.Date)}</p>
-                <h3 className="description-heading">Description:</h3>
+                <h6 className="description-heading">Description:</h6>
                 <p className="description" dangerouslySetInnerHTML={{ __html: limitDescription(video.description) }}></p>
               </div>
             </div>
