@@ -68,11 +68,11 @@ function ImageGallery() {
   
 
   return (
-    <div className="image-gallery-container">
+    <div className="image-gallery-container video-players-container">
       <div className="search-bar">
         <input
           type="text"
-          placeholder="Search by title..."
+          placeholder="ស្វែងរករូបភាពតាមរយះចំណងជើង..."
           value={searchQuery}
           onChange={handleSearchChange}
           className='search-input'
@@ -98,7 +98,7 @@ function ImageGallery() {
         )}
       </div>
       {images.length > displayedImages && (
-        <center> <button onClick={handleShowMoreImages} className='more-button'>Show More</button> </center>
+        <center> <button onClick={handleShowMoreImages} className='more-button'>LOAD MORE</button> </center>
       )}
       {selectedImage && (
         <Modal image={selectedImage} onClose={handleCloseModal} />

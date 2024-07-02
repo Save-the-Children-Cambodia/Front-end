@@ -96,11 +96,11 @@ function VideoPlayers() {
           type="text"
           value={searchQuery}
           onChange={handleSearchInputChange}
-          placeholder="Search video titles..."
+          placeholder="ស្វែងរកវិដេអូតាមរយះចំណងជើង..."
           className="search-input"
         />
         <div className='sort-select'>
-          <label htmlFor="sortOption" className='sortOption'>Sort by:</label>
+          <label htmlFor="sortOption">Sort by:</label>
           <select id="sortOption" className='sortOptionmore' value={sortOption} onChange={handleSortChange}>
             <option value="newest">Newest to Oldest</option>
             <option value="oldest">Oldest to Newest</option>
@@ -124,7 +124,7 @@ function VideoPlayers() {
               <div className="video-details-container">
                 <h2 className="video-title">{video.title}</h2>
                 <p className="upload-date">Uploaded on: {formatDate(video.Date)}</p>
-                <h3 className="description-heading">Description:</h3>
+                <h6 className="description-heading">Description:</h6>
                 <p className="description" dangerouslySetInnerHTML={{ __html: limitDescription(video.description) }}></p>
               </div>
             </div>

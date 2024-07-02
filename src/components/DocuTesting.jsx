@@ -48,7 +48,7 @@ function ViewPDFPage() {
           type="text"
           value={searchQuery}
           onChange={handleSearchInputChange}
-          placeholder="Search PDF titles..."
+          placeholder="ស្វែងរកឯកសារតាមរយះចំណងជើង..."
           className="search-input"
         />
         <div className='sort-select'>
@@ -61,14 +61,18 @@ function ViewPDFPage() {
       </div>
       <div className="pdf-list">
         {pdfs.map((pdf, index) => (
-          <div key={index} className="pdf-item">
-            <h2 className="pdf-title">{pdf.title}</h2>
-            <img src={pdf.imageURL} alt={pdf.title} />
-            <button className='button-a'>
-              <a href={pdf.url} target="_blank" rel="noopener noreferrer" className="pdf-link">{pdf.filename}</a>
-            </button>
-            <p className="pdf-description">{pdf.description}</p>
-            <p className="pdf-date">Date: {pdf.Date}</p>
+          <div key={index} className="pdf-item pdf-item-more">
+            <div>
+              <img src={pdf.imageURL} alt={pdf.title} />
+              <h2 className="pdf-title">{pdf.title}</h2>
+              <p className="pdf-date">Date: {pdf.Date}</p>
+              <p className="pdf-description">{pdf.description}</p>
+            </div>
+            <div>
+              <button className='button-a'>
+                <a href={pdf.url} target="_blank" rel="noopener noreferrer" className="pdf-link">{pdf.filename}</a>
+              </button>
+            </div>
           </div>
         ))}
       </div>
