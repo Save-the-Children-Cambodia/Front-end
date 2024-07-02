@@ -24,7 +24,7 @@ const Feedback = () => {
                 </div>
             </div>
         <div className="container-feedback-report class-feedback">
-            <p className="feedback-title">Feed Back</p>
+            <p className="feedback-title">FeedBack</p>
             <Stack className="hey-hey-hey">
                 <div className="container-feedback-input-identify">
                     <Autocomplete
