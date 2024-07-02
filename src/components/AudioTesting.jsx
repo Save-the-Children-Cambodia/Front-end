@@ -50,8 +50,8 @@ function AudioGallery() {
   const limitDescription = (description) => {
     if (!description) return '';
     const words = description.split(' ');
-    if (words.length > 50) {
-      return words.slice(0, 50).join(' ') + '...';
+    if (words.length > 20) {
+      return words.slice(0, 20).join(' ') + '...';
     }
     return description;
   };
@@ -95,6 +95,16 @@ function AudioGallery() {
   const loadMoreAudios = () => {
     setDisplayCount(prevCount => prevCount + 3);
   };
+  const AudioComponent = ({ audio, currentAudio, setCurrentAudio, playAudio }) => {
+    useEffect(() => {
+      if (currentAudio && currentAudio.id === audio.id) {
+        const audioElement = document.getElementById(`audio-${audio.id}`);
+        if (audioElement) {
+          audioElement.play();
+        }
+      }
+    }, [currentAudio, audio]);
+  }  
 
   return (
     <div className='audio-container video-players-container'>
@@ -142,7 +152,7 @@ function AudioGallery() {
               />
               </div>
               
-              <Stack direction="column" alignItems="center" spacing={1} useFlexGap>
+              <Stack direction="column" alignItems="center" spacing={1} useFlexGap style={{paddingLeft: "10px"}}>
                 <div className='audio-detail'>
                   <Typography className='audio-title' color="text.primary" fontWeight="semiBold">
                     {audio.title}
@@ -160,18 +170,21 @@ function AudioGallery() {
                 </div>
                 <div className="audio-display">
                   <Stack className='play-container' spacing={1} useFlexGap>
-                  <IconButton
-                    className='play-button'
-                    aria-label={currentAudio && currentAudio.id === audio.id ? 'Pause music' : 'Play music'}
-                    onClick={() => playAudio(audio)}
-                    sx={{ mx: 1 }}
-                  >
-                    {currentAudio && currentAudio.id === audio.id ? (
-                      <PauseRounded />
-                    ) : (
+                  <div className='audio-card-container'>
+                    <IconButton
+                      className='play-button'
+                      aria-label='Play music'
+                      onClick={() => playAudio(audio)}
+                      sx={{ mx: 1 }}
+                    >
                       <PlayArrowRounded />
-                    )}
-                  </IconButton>
+                    </IconButton>
+                    <audio id={`audio-${audio.id}`} controls>
+                      <source src={audio.url} type='audio/mpeg' />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </div>
+
                 </Stack>
                 {currentAudio && currentAudio.id === audio.id && (
                   <div>
@@ -208,10 +221,10 @@ function AudioGallery() {
               </Stack>
             </Card>
           ))}
-          {filteredAudios.length > displayCount && (
-            <Button onClick={loadMoreAudios}>Load More</Button>
-          )}
         </div>
+      )}
+      {filteredAudios.length > displayCount && (
+            <Button className='audio-load-more' onClick={loadMoreAudios}><span className='audio-load-more'>Load More</span></Button>
       )}
     </div>
   );
