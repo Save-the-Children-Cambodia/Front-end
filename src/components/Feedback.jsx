@@ -34,7 +34,7 @@ const Feedback = () => {
                         renderInput={(params) => 
                         <TextField 
                             {...params} 
-                            label="Gmail" 
+                            label="អុីម៉ែល" 
                             type="email"
                         />}
                     />
@@ -66,7 +66,7 @@ const Feedback = () => {
                         renderInput={(params) => 
                         <TextField 
                             {...params} 
-                            label="Gmail" 
+                            label="Text Here..." 
                             type="email"
                         />}
                     />
