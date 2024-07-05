@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, Timestamp } from 'firebase/firestore'; // Import Timestamp
 import { db } from '../firebaseConfig.js';
 import { Button, TextField, InputLabel, Input, FormControl } from '@material-ui/core';
 
@@ -18,9 +18,13 @@ const Campaign = () => {
             }
 
             try {
+                // Convert scheduledDate to Firestore Timestamp
+                const scheduledTimestamp = Timestamp.fromDate(new Date(scheduledDate));
+                console.log('Scheduled Timestamp:', scheduledTimestamp);
+
                 // Store the campaign data in Firebase Firestore
                 const docRef = await addDoc(collection(db, "Campaign"), {
-                    scheduledDate: scheduledDate,
+                    scheduledDate: scheduledTimestamp,
                     message: message,
                     imageURL: imageURL
                 });
