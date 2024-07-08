@@ -26,7 +26,8 @@ const Campaign = () => {
                 const docRef = await addDoc(collection(db, "Campaign"), {
                     scheduledDate: scheduledTimestamp,
                     message: message,
-                    imageURL: imageURL
+                    imageURL: imageURL,
+                    already: false // Add the new field with default value
                 });
 
                 console.log("Document written with ID: ", docRef.id);
