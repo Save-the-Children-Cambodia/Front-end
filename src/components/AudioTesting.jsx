@@ -127,52 +127,40 @@ function AudioGallery() {
       {loading ? (
         <p>Loading audios...</p>
       ) : (
-        <div className='audio-card-container'>
+        <div className=''>
           {sortedAudios.slice(0, displayCount).map(audio => (
-            <Card key={audio.id} variant="outlined"
-                sx={{
-                p: 2,
-                width: { xs: '100%', sm: 'auto' },
-                display: 'flex',
-                flexDirection: { xs: 'column', sm: 'row' },
-                gap: 2,
-              }}
-            >
-              <div className="make-ctimg">
+            <Card key={audio.id} variant="outlined">
+              <div className="">
                 <CardMedia
-                className='audio-image'
+                className=''
                 component="img"
                 width="100"
                 height="100"
                 alt={audio.title}
                 src={audio.imageURL}
-                sx={{
-                  width: { xs: '100%', sm: 100 },
-                }}
               />
               </div>
               
-              <Stack direction="column" alignItems="center" spacing={1} useFlexGap style={{paddingLeft: "10px"}}>
-                <div className='audio-detail'>
-                  <Typography className='audio-title' color="text.primary" fontWeight="semiBold">
+              <Stack direction="column" alignItems="center" spacing={1}>
+                <div className=''>
+                  <Typography className='' color="text.primary" fontWeight="semiBold">
                     {audio.title}
                   </Typography>
                   <p>{formatDate(audio.date)}</p>
                   <Typography
-                    className='audio-description'
+                    className=''
                     variant="caption"
                     color="text.secondary"
                     fontWeight="medium"
-                    sx={{ width: '100%' }}
                   >
                     {limitDescription(audio.description)}
                   </Typography>
                 </div>
-                <div className="audio-display">
-                  <Stack className='play-container' spacing={1} useFlexGap>
-                  <div className='audio-card-container'>
+                <div className="">
+                  <Stack className='' spacing={1} useFlexGap>
+                  <div className=''>
                     <IconButton
-                      className='play-button'
+                      className=''
                       aria-label='Play music'
                       onClick={() => playAudio(audio)}
                       sx={{ mx: 1 }}
@@ -224,7 +212,7 @@ function AudioGallery() {
         </div>
       )}
       {filteredAudios.length > displayCount && (
-            <Button className='audio-load-more' onClick={loadMoreAudios}><span className='audio-load-more'>Load More</span></Button>
+            <Button className='' onClick={loadMoreAudios}><span className=''>Load More</span></Button>
       )}
     </div>
   );
