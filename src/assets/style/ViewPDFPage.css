@@ -7,6 +7,10 @@
   font-family: Lato;
   margin-top: 50px;
 }
+.pdf-list{
+  display: flex;
+  justify-content: center;
+}
 @media screen and (min-width:210px) and (max-width:1024px) {
   .video-players-container {
     margin-top: 35px;
