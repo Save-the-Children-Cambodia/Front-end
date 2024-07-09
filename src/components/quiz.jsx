@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { collection, addDoc, Timestamp } from 'firebase/firestore'; // Import Timestamp
 import { db } from '../firebaseConfig.js';
-import { Button, TextField, InputLabel, Input, FormControl } from '@material-ui/core';
+import { Button, TextField, InputLabel, Input, FormControl, List, ListItem, ListItemText } from '@material-ui/core';
 
-const Campaign = () => {
+const Quiz = () => {
     const [scheduledDate, setScheduledDate] = useState(''); // State to hold scheduled date and time
-    const [message, setMessage] = useState(''); // State to hold message text
-    const [imageURL, setImageURL] = useState(''); // State to hold image URL
+    const [question, setQuestion] = useState(''); // State to hold message text
+    const [answers, setAnswers] = useState([]); // State to hold the list of answers
     const [lastSubmission, setLastSubmission] = useState({}); // State to hold the last submission
 
     const handleSchedule = async () => {
-        if (scheduledDate && message) {
+        if (scheduledDate && question && answers.length > 0) {
             // Check for duplicate submission
-            if (scheduledDate === lastSubmission.scheduledDate && message === lastSubmission.message && imageURL === lastSubmission.imageURL) {
+            if (scheduledDate === lastSubmission.scheduledDate && question === lastSubmission.question && JSON.stringify(answers) === JSON.stringify(lastSubmission.answers)) {
                 window.alert('Duplicate submission detected. Please modify your input before submitting again.');
                 return;
             }
@@ -23,30 +23,30 @@ const Campaign = () => {
                 console.log('Scheduled Timestamp:', scheduledTimestamp);
 
                 // Store the campaign data in Firebase Firestore
-                const docRef = await addDoc(collection(db, "Campaign"), {
+                const docRef = await addDoc(collection(db, "Quiz"), {
                     scheduledDate: scheduledTimestamp,
-                    message: message,
-                    imageURL: imageURL,
+                    question: question,
+                    answers: answers,
                     already: false // Add the new field with default value
                 });
 
                 console.log("Document written with ID: ", docRef.id);
 
                 // Update last submission state
-                setLastSubmission({ scheduledDate, message, imageURL });
+                setLastSubmission({ scheduledDate, question, answers });
 
                 // Alert on successful submission
                 window.alert('Broadcast scheduled successfully!');
 
                 // Clear the input fields
                 setScheduledDate('');
-                setMessage('');
-                setImageURL('');
+                setQuestion('');
+                setAnswers([]);
             } catch (error) {
                 console.error('Error scheduling broadcast:', error);
             }
         } else {
-            console.log('Please select a date and enter a message');
+            console.log('Please select a date and enter a question and answers');
         }
     };
 
@@ -54,17 +54,20 @@ const Campaign = () => {
         setScheduledDate(event.target.value); // Update scheduled date and time
     };
 
-    const handleMessageChange = (event) => {
-        setMessage(event.target.value); // Update message text
+    const handleQuestionChange = (event) => {
+        setQuestion(event.target.value); // Update question text
     };
 
-    const handleImageURLChange = (event) => {
-        setImageURL(event.target.value); // Update image URL
+    const handleAnswerChange = (event) => {
+        if (event.key === 'Enter' && event.target.value.trim()) {
+            setAnswers([...answers, event.target.value.trim()]); // Add the answer to the list
+            event.target.value = ''; // Clear the answer input field
+        }
     };
 
     return (
         <div>
-            <h2>Schedule Broadcast</h2>
+            <h2>Schedule Quiz</h2>
             <FormControl fullWidth>
                 <InputLabel htmlFor="scheduled-date"></InputLabel>
                 <Input
@@ -76,25 +79,30 @@ const Campaign = () => {
             </FormControl>
             <br /><br />
             <TextField
-                id="message"
-                label="Enter Message"
+                id="question"
+                label="Enter Question"
                 multiline
                 rows={4}
                 fullWidth
-                value={message}
-                onChange={handleMessageChange}
+                value={question}
+                onChange={handleQuestionChange}
             />
             <br /><br />
             <FormControl fullWidth>
-                <InputLabel htmlFor="image-upload">Input Image URL</InputLabel>
-                <Input
-                    id="image-upload"
-                    type="text"
-                    value={imageURL}
-                    onChange={handleImageURLChange}
+                <TextField
+                    id="answer"
+                    label="Enter Answer and Press Enter"
+                    onKeyPress={handleAnswerChange}
                 />
             </FormControl>
-            
+            <br /><br />
+            <List>
+                {answers.map((ans, index) => (
+                    <ListItem key={index}>
+                        <ListItemText primary={ans} />
+                    </ListItem>
+                ))}
+            </List>
             <br /><br />
             <Button onClick={handleSchedule} variant="contained" color="primary">
                 Submit
@@ -102,5 +110,4 @@ const Campaign = () => {
         </div>
     );
 };
-
-export default Campaign;
+export default Quiz;
