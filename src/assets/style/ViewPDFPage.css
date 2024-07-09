@@ -7,14 +7,12 @@
   font-family: Lato;
   margin-top: 50px;
 }
-
-
-
 @media screen and (min-width:210px) and (max-width:1024px) {
   .video-players-container {
     margin-top: 35px;
   }
 }
+
 .view-pdf-container {
   /* padding: 20px; */
   font-family: Lato;
@@ -49,5 +47,96 @@
       font-size: 16px;
     }
   }
-  
+  .pdf-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    .pdf-item {
+      width: 20vw;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 15px;
+      .pdf-title {
+        font-size: 20px;
+        margin-top: 10px;
+      }
+      img {
+        width: 20vw;
+        height: 30vh;
+      }
+      .button-a{
+        margin-top: 20px;
+        border-radius: 10px;
+        height: 40px;
+        background-color: aliceblue;
+        .pdf-link {
+          font-size: 18px;
+          font-weight: bold;
+          color: #007bff;
+          text-decoration: none;
+        }
+      }
+      .pdf-description {
+        margin-top: 10px;
+      }
+      .pdf-date {
+        margin-top: 10px;
+        font-style: italic;
+      }
+    }
+  }
+}
+@media screen and (min-width: 1280px) and (max-width:1439px) {
+  .view-pdf-container {
+    .pdf-list {
+      .pdf-item {
+        img {
+          height: 27vh;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width:1024px) and (max-width:1279px) {
+  .view-pdf-container {
+    .pdf-list {
+      .pdf-item {
+        img {
+          height: 21vh;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width:568px) and (max-width:1023px) {
+  .view-pdf-container {
+    .pdf-list {
+      flex-wrap: wrap;
+      width: 80vw;
+      .pdf-item {
+        width: 30vw;
+        img {
+          width: 30vw;
+          height: 15vh;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width:210px) and (max-width:567px) {
+  .view-pdf-container {
+    .pdf-list {
+      flex-wrap: wrap;
+      width: 80vw;
+      gap: 5px;
+      .pdf-item {
+        width: 70vw;
+        img {
+          width: 70vw;
+          height: 20vh;
+        }
+      }
+    }
+  }
 }

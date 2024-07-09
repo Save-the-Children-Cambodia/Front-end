@@ -59,18 +59,18 @@ function ViewPDFPage() {
           </select>
         </div>
       </div>
-      <div className="">
+      <div className="pdf-list">
         {pdfs.map((pdf, index) => (
-          <div key={index} className="">
+          <div key={index} className="pdf-item pdf-item-more">
             <div>
               <img src={pdf.imageURL} alt={pdf.title} />
-              <h2 className="">{pdf.title}</h2>
-              <p className="">Date: {pdf.Date}</p>
-              <p className="">{pdf.description}</p>
+              <h2 className="pdf-title">{pdf.title}</h2>
+              <p className="pdf-date">Date: {pdf.Date}</p>
+              <p className="pdf-description">{pdf.description}</p>
             </div>
             <div>
-              <button className=''>
-                <a href={pdf.url} target="_blank" rel="noopener noreferrer" className="">{pdf.filename}</a>
+              <button className='button-a'>
+                <a href={pdf.url} target="_blank" rel="noopener noreferrer" className="pdf-link">{pdf.filename}</a>
               </button>
             </div>
           </div>
