@@ -6,6 +6,10 @@
 .video-players-container{
   margin-top: 35px;
 }
+.button-a
+{
+  border: none;
+}
 .pdf-item-more{
   display: flex;
   justify-content: space-between;
