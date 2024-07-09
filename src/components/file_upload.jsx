@@ -3,7 +3,6 @@ import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig.js';
 import "../assets/style/AddingData.css"
 import OtherSelection from './otherselection.jsx';
-import RichTextEditor from './rte.jsx';
 import { UserAuth } from '../AuthProvider.js';
 import { useNavigate } from 'react-router-dom';
 import { Editor } from '@jeremyling/react-material-ui-rich-text-editor';

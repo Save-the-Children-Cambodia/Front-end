@@ -68,10 +68,11 @@ function ViewPDFPage() {
               <p className="pdf-date">Date: {pdf.Date}</p>
               <p className="pdf-description">{pdf.description}</p>
             </div>
-            <div>
-              <button className='button-a'>
-                <a href={pdf.url} target="_blank" rel="noopener noreferrer" className="pdf-link">{pdf.filename}</a>
-              </button>
+            <div className='nest-pdf-link'>
+                <a href={pdf.url} target="_blank" rel="noopener noreferrer" className="pdf-link">
+                  {/* <span>{pdf.filename}</span> */}
+                  <p>View PDF</p>
+                </a>
             </div>
           </div>
         ))}
