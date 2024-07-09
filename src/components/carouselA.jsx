@@ -21,6 +21,8 @@ const Carousel = ({ slides }) => {
         return { text: "Edit/Delete Files"}
       case 3:
         return { text: "Campaign"}
+      case 4:
+        return {  text: "Quiz"}
       default:
         return { icon: null, text: "" };
     }
