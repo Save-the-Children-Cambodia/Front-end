@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import { collection, addDoc, Timestamp } from 'firebase/firestore'; // Import Timestamp
 import { db } from '../firebaseConfig.js';
-import { Button, TextField, InputLabel, Input, FormControl, List, ListItem, ListItemText } from '@material-ui/core';
+import { Button, TextField, InputLabel, Input, FormControl, List, ListItem, ListItemText, Radio, RadioGroup, FormControlLabel } from '@material-ui/core';
 
 const Quiz = () => {
     const [scheduledDate, setScheduledDate] = useState(''); // State to hold scheduled date and time
     const [question, setQuestion] = useState(''); // State to hold message text
     const [answers, setAnswers] = useState([]); // State to hold the list of answers
+    const [correctAnswerIndex, setCorrectAnswerIndex] = useState(null); // State to hold the index of the correct answer
     const [lastSubmission, setLastSubmission] = useState({}); // State to hold the last submission
 
     const handleSchedule = async () => {
-        if (scheduledDate && question && answers.length > 0) {
+        if (scheduledDate && question && answers.length > 0 && correctAnswerIndex !== null) {
             // Check for duplicate submission
-            if (scheduledDate === lastSubmission.scheduledDate && question === lastSubmission.question && JSON.stringify(answers) === JSON.stringify(lastSubmission.answers)) {
+            if (scheduledDate === lastSubmission.scheduledDate && question === lastSubmission.question && JSON.stringify(answers) === JSON.stringify(lastSubmission.answers) && correctAnswerIndex === lastSubmission.correctAnswerIndex) {
                 window.alert('Duplicate submission detected. Please modify your input before submitting again.');
                 return;
             }
@@ -27,13 +28,14 @@ const Quiz = () => {
                     scheduledDate: scheduledTimestamp,
                     question: question,
                     answers: answers,
+                    correctAnswerIndex: correctAnswerIndex,
                     already: false // Add the new field with default value
                 });
 
                 console.log("Document written with ID: ", docRef.id);
 
                 // Update last submission state
-                setLastSubmission({ scheduledDate, question, answers });
+                setLastSubmission({ scheduledDate, question, answers, correctAnswerIndex });
 
                 // Alert on successful submission
                 window.alert('Broadcast scheduled successfully!');
@@ -42,11 +44,12 @@ const Quiz = () => {
                 setScheduledDate('');
                 setQuestion('');
                 setAnswers([]);
+                setCorrectAnswerIndex(null);
             } catch (error) {
                 console.error('Error scheduling broadcast:', error);
             }
         } else {
-            console.log('Please select a date and enter a question and answers');
+            console.log('Please select a date, enter a question, answers, and choose the correct answer');
         }
     };
 
@@ -63,6 +66,10 @@ const Quiz = () => {
             setAnswers([...answers, event.target.value.trim()]); // Add the answer to the list
             event.target.value = ''; // Clear the answer input field
         }
+    };
+
+    const handleCorrectAnswerChange = (event) => {
+        setCorrectAnswerIndex(Number(event.target.value)); // Update the correct answer index
     };
 
     return (
@@ -99,7 +106,14 @@ const Quiz = () => {
             <List>
                 {answers.map((ans, index) => (
                     <ListItem key={index}>
-                        <ListItemText primary={ans} />
+                        <FormControlLabel
+                            control={<Radio
+                                checked={correctAnswerIndex === index}
+                                onChange={handleCorrectAnswerChange}
+                                value={index}
+                            />}
+                            label={ans}
+                        />
                     </ListItem>
                 ))}
             </List>
