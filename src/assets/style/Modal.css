@@ -16,6 +16,8 @@
 } 
 .modal-content
 {
+  position: relative;
+  z-index: 100;
   background-color: white;
   padding: 10px;
   width: 80vw;
