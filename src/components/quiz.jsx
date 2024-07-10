@@ -5,15 +5,16 @@ import { Button, TextField, InputLabel, Input, FormControl, List, ListItem, List
 
 const Quiz = () => {
     const [scheduledDate, setScheduledDate] = useState(''); // State to hold scheduled date and time
+    const [title, setTitle] = useState(''); // State to hold the campaign title
     const [question, setQuestion] = useState(''); // State to hold message text
     const [answers, setAnswers] = useState([]); // State to hold the list of answers
     const [correctAnswerIndex, setCorrectAnswerIndex] = useState(null); // State to hold the index of the correct answer
     const [lastSubmission, setLastSubmission] = useState({}); // State to hold the last submission
 
     const handleSchedule = async () => {
-        if (scheduledDate && question && answers.length > 0 && correctAnswerIndex !== null) {
+        if (scheduledDate && title && question && answers.length > 0 && correctAnswerIndex !== null) {
             // Check for duplicate submission
-            if (scheduledDate === lastSubmission.scheduledDate && question === lastSubmission.question && JSON.stringify(answers) === JSON.stringify(lastSubmission.answers) && correctAnswerIndex === lastSubmission.correctAnswerIndex) {
+            if (scheduledDate === lastSubmission.scheduledDate && title === lastSubmission.title && question === lastSubmission.question && JSON.stringify(answers) === JSON.stringify(lastSubmission.answers) && correctAnswerIndex === lastSubmission.correctAnswerIndex) {
                 window.alert('Duplicate submission detected. Please modify your input before submitting again.');
                 return;
             }
@@ -26,22 +27,24 @@ const Quiz = () => {
                 // Store the campaign data in Firebase Firestore
                 const docRef = await addDoc(collection(db, "Quiz"), {
                     scheduledDate: scheduledTimestamp,
+                    title: title,
                     question: question,
                     answers: answers,
                     correctAnswerIndex: correctAnswerIndex,
-                    already: false // Add the new field with default value
+                    already: 0 // Add the new field with default value
                 });
 
                 console.log("Document written with ID: ", docRef.id);
 
                 // Update last submission state
-                setLastSubmission({ scheduledDate, question, answers, correctAnswerIndex });
+                setLastSubmission({ scheduledDate, title, question, answers, correctAnswerIndex });
 
                 // Alert on successful submission
                 window.alert('Broadcast scheduled successfully!');
 
                 // Clear the input fields
                 setScheduledDate('');
+                setTitle('');
                 setQuestion('');
                 setAnswers([]);
                 setCorrectAnswerIndex(null);
@@ -49,12 +52,16 @@ const Quiz = () => {
                 console.error('Error scheduling broadcast:', error);
             }
         } else {
-            console.log('Please select a date, enter a question, answers, and choose the correct answer');
+            console.log('Please select a date, enter a title, question, answers, and choose the correct answer');
         }
     };
 
     const handleDateChange = (event) => {
         setScheduledDate(event.target.value); // Update scheduled date and time
+    };
+
+    const handleTitleChange = (event) => {
+        setTitle(event.target.value); // Update campaign title
     };
 
     const handleQuestionChange = (event) => {
@@ -84,6 +91,14 @@ const Quiz = () => {
                     onChange={handleDateChange}
                 />
             </FormControl>
+            <br /><br />
+            <TextField
+                id="title"
+                label="Enter Campaign Title"
+                fullWidth
+                value={title}
+                onChange={handleTitleChange}
+            />
             <br /><br />
             <TextField
                 id="question"
