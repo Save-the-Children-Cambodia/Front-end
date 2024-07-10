@@ -8,7 +8,7 @@ function ImageGallery() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [displayedImages, setDisplayedImages] = useState(4);
+  const [displayedImages, setDisplayedImages] = useState(8);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('newest');
 
@@ -47,7 +47,7 @@ function ImageGallery() {
   };
 
   const handleShowMoreImages = () => {
-    setDisplayedImages(prev => prev + 4);
+    setDisplayedImages(prev => prev + 8);
   };
 
   const handleSearchChange = (event) => {
@@ -99,8 +99,7 @@ function ImageGallery() {
       </div>
       {images.length > displayedImages && (
         <center> <button onClick={handleShowMoreImages} className='more-button'>LOAD MORE</button> </center>
-      )}
-      {selectedImage && (
+      )}{selectedImage && (
         <Modal image={selectedImage} onClose={handleCloseModal} />
       )}
     </div>
