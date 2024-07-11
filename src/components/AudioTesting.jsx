@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
-import PauseRounded from '@mui/icons-material/PauseRounded';
 import Button from '@mui/material/Button';
 import "../assets/style/audio.css"
 
