@@ -154,19 +154,9 @@ function AudioGallery() {
               
               <Stack direction="column" alignItems="center" spacing={1} useFlexGap style={{paddingLeft: "10px"}}>
                 <div className='audio-detail'>
-                  <Typography className='audio-title' color="text.primary" fontWeight="semiBold">
-                    {audio.title}
-                  </Typography>
-                  <p>{formatDate(audio.date)}</p>
-                  <Typography
-                    className='audio-description'
-                    variant="caption"
-                    color="text.secondary"
-                    fontWeight="medium"
-                    sx={{ width: '100%' }}
-                  >
-                    {limitDescription(audio.description)}
-                  </Typography>
+                  <h3 className='audio-title'>{audio.title}</h3>
+                  <p className='audio-description'>{formatDate(audio.date)}</p>
+                  <p className="audio-description">{limitDescription(audio.description)}</p>
                 </div>
                 <div className="audio-display">
                   <Stack className='play-container' spacing={1} useFlexGap>
