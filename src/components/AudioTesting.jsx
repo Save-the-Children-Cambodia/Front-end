@@ -49,8 +49,8 @@ function AudioGallery() {
   const limitDescription = (description) => {
     if (!description) return '';
     const words = description.split(' ');
-    if (words.length > 20) {
-      return words.slice(0, 20).join(' ') + '...';
+    if (words.length > 75) {
+      return words.slice(0, 75).join(' ') + '...';
     }
     return description;
   };
@@ -69,14 +69,20 @@ function AudioGallery() {
   };
 
   const formatDate = (timestamp) => {
-    if (!timestamp) return ''; // Handle undefined timestamp
+    console.log("Timestamp received:", timestamp);
+    
     if (timestamp instanceof Date) {
+      console.log("It's a Date object.");
       return timestamp.toDateString();
-    } else {
+    } else if (timestamp && timestamp.seconds) {
+      console.log("It's a Firestore Timestamp object.");
       const dateObject = new Date(timestamp.seconds * 1000);
       return dateObject.toDateString();
+    } else {
+      console.log("Invalid timestamp format:", timestamp);
+      return "Invalid Date";
     }
-  };
+  };  
 
   const filteredAudios = audios.filter(audio =>
     audio.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -154,8 +160,8 @@ function AudioGallery() {
               <Stack direction="column" alignItems="center" spacing={1} useFlexGap style={{paddingLeft: "10px"}}>
                 <div className='audio-detail'>
                   <h3 className='audio-title'>{audio.title}</h3>
-                  <p className='audio-description'>{formatDate(audio.date)}</p>
-                  <p className="audio-description">{limitDescription(audio.description)}</p>
+                  <p className='audio-date'>Upload on: {formatDate(audio.Date)}</p>
+                  <p className="audio-description" dangerouslySetInnerHTML={{ __html: limitDescription(audio.description)}}></p>
                 </div>
                 <div className="audio-display">
                   <Stack className='play-container' spacing={1} useFlexGap>

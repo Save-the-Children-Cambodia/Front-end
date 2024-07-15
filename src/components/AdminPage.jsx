@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { collection, addDoc } from 'firebase/firestore';
+import { Timestamp, collection, addDoc } from 'firebase/firestore';
 import { db, storage } from '../firebaseConfig.js';
 import "../assets/style/AddingData.css"
 import OtherSelection from './otherselection.jsx';
@@ -63,8 +63,11 @@ function AdminPage() {
         fileURL = await getDownloadURL(storageRef);
       }
 
-      // Submit form with the file URL
-      await submitToFirestore({ url: fileURL });
+      // Convert date string to Firestore Timestamp
+      const timestamp = Timestamp.fromDate(new Date(date));
+
+      // Submit form with the file URL and timestamp
+      await submitToFirestore({ url: fileURL, timestamp });
 
       alert('Upload successful!');
     } catch (error) {
@@ -89,7 +92,7 @@ function AdminPage() {
       await addDoc(collection(db, collectionName), {
         title,
         description,
-        Date: date,
+        Date: fileData.timestamp,
         filename,
         format,
         topic,

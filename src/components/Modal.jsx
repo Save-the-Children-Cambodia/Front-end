@@ -18,7 +18,7 @@ function Modal({ image, onClose }) {
               </div>
               <div>
                 <p className="publication-date">
-                    Published on: {new Date(image.publishDate).toLocaleDateString()}
+                    Published on: {new Date(image.Date).toLocaleDateString()}
                 </p>
               </div>
             </div>

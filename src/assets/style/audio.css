@@ -69,6 +69,10 @@
         font-size: 40px;
         margin-top: 10px;
       }
+      .audio-date {
+        font-size: 15px;
+        font-style: italic;
+      }
       .audio-description {
         color: black;
         font-size: 20px;
