@@ -1,44 +1,62 @@
-import React, { useState } from 'react';
-import { collection, addDoc, Timestamp } from 'firebase/firestore'; // Import Timestamp
+import React, { useState, useEffect } from 'react';
+import { collection, addDoc, query, onSnapshot, Timestamp } from 'firebase/firestore';
 import { db } from '../firebaseConfig.js';
-import { Button, TextField, InputLabel, Input, FormControl } from '@material-ui/core';
+import { Button, TextField, InputLabel, Input, FormControl, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Collapse, Typography } from '@material-ui/core';
+import "../assets/style/campaign.css";
 
 const Campaign = () => {
-    const [scheduledDate, setScheduledDate] = useState(''); // State to hold scheduled date and time
-    const [message, setMessage] = useState(''); // State to hold message text
-    const [imageURL, setImageURL] = useState(''); // State to hold image URL
-    const [lastSubmission, setLastSubmission] = useState({}); // State to hold the last submission
+    const [title, setTitle] = useState('');
+    const [scheduledDate, setScheduledDate] = useState('');
+    const [message, setMessage] = useState('');
+    const [imageURL, setImageURL] = useState('');
+    const [campaigns, setCampaigns] = useState({});
+    const [openId, setOpenId] = useState(null); // State to track which campaign group is open
+
+    useEffect(() => {
+        const q = query(collection(db, "Campaign"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            const groupedData = {};
+            querySnapshot.forEach(doc => {
+                const data = doc.data();
+                const timestampDate = data.scheduledDate ? new Timestamp(data.scheduledDate.seconds, data.scheduledDate.nanoseconds).toDate() : null;
+                const campaignData = { id: doc.id, ...data, scheduledDate: timestampDate };
+                groupedData[data.title] = groupedData[data.title] ? [...groupedData[data.title], campaignData] : [campaignData];
+            });
+            setCampaigns(groupedData);
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    const handleTitleChange = (event) => {
+        setTitle(event.target.value);
+    };
+
+    const handleDateChange = (event) => {
+        setScheduledDate(event.target.value);
+    };
+
+    const handleMessageChange = (event) => {
+        setMessage(event.target.value);
+    };
+
+    const handleImageURLChange = (event) => {
+        setImageURL(event.target.value);
+    };
 
     const handleSchedule = async () => {
-        if (scheduledDate && message) {
-            // Check for duplicate submission
-            if (scheduledDate === lastSubmission.scheduledDate && message === lastSubmission.message && imageURL === lastSubmission.imageURL) {
-                window.alert('Duplicate submission detected. Please modify your input before submitting again.');
-                return;
-            }
-
+        if (title && scheduledDate && message) {
+            const scheduledTimestamp = Timestamp.fromDate(new Date(scheduledDate));
             try {
-                // Convert scheduledDate to Firestore Timestamp
-                const scheduledTimestamp = Timestamp.fromDate(new Date(scheduledDate));
-                console.log('Scheduled Timestamp:', scheduledTimestamp);
-
-                // Store the campaign data in Firebase Firestore
-                const docRef = await addDoc(collection(db, "Campaign"), {
+                await addDoc(collection(db, "Campaign"), {
+                    title: title,
                     scheduledDate: scheduledTimestamp,
                     message: message,
                     imageURL: imageURL,
-                    already: false // Add the new field with default value
+                    already: false
                 });
-
-                console.log("Document written with ID: ", docRef.id);
-
-                // Update last submission state
-                setLastSubmission({ scheduledDate, message, imageURL });
-
-                // Alert on successful submission
                 window.alert('Broadcast scheduled successfully!');
-
-                // Clear the input fields
+                setTitle('');
                 setScheduledDate('');
                 setMessage('');
                 setImageURL('');
@@ -46,60 +64,87 @@ const Campaign = () => {
                 console.error('Error scheduling broadcast:', error);
             }
         } else {
-            console.log('Please select a date and enter a message');
+            console.log('Please ensure all fields are filled.');
         }
     };
 
-    const handleDateChange = (event) => {
-        setScheduledDate(event.target.value); // Update scheduled date and time
-    };
-
-    const handleMessageChange = (event) => {
-        setMessage(event.target.value); // Update message text
-    };
-
-    const handleImageURLChange = (event) => {
-        setImageURL(event.target.value); // Update image URL
+    const toggleDetails = (id) => {
+        setOpenId(openId === id ? null : id);
     };
 
     return (
-        <div>
-            <h2>Schedule Broadcast</h2>
-            <FormControl fullWidth>
-                <InputLabel htmlFor="scheduled-date"></InputLabel>
-                <Input
-                    id="scheduled-date"
-                    type="datetime-local"
-                    value={scheduledDate}
-                    onChange={handleDateChange}
-                />
-            </FormControl>
-            <br /><br />
-            <TextField
-                id="message"
-                label="Enter Message"
-                multiline
-                rows={4}
-                fullWidth
-                value={message}
-                onChange={handleMessageChange}
-            />
-            <br /><br />
-            <FormControl fullWidth>
-                <InputLabel htmlFor="image-upload">Input Image URL</InputLabel>
-                <Input
-                    id="image-upload"
-                    type="text"
-                    value={imageURL}
-                    onChange={handleImageURLChange}
-                />
-            </FormControl>
-            
-            <br /><br />
-            <Button onClick={handleSchedule} variant="contained" color="primary">
-                Submit
-            </Button>
-        </div>
+        <Grid container spacing={3}>
+            <Grid item xs={12} md={6}>
+                <Typography variant="h6" gutterBottom>
+                    Scheduled Campaigns
+                </Typography>
+                <TableContainer component={Paper}>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Title</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {Object.keys(campaigns).map((title) => (
+                                <>
+                                    <TableRow key={title} hover onClick={() => toggleDetails(title)}>
+                                        <TableCell>{title}</TableCell>
+                                    </TableRow>
+                                    <Collapse in={openId === title} timeout="auto" unmountOnExit>
+                                        <Table size="small" aria-label="details">
+                                            <TableBody>
+                                                {campaigns[title].map((campaign) => (
+                                                    <TableRow key={campaign.id}>
+                                                        <TableCell component="th" scope="row">
+                                                            {campaign.message}
+                                                        </TableCell>
+                                                        <TableCell>{campaign.scheduledDate.toLocaleString()}</TableCell>
+                                                        <TableCell>{campaign.imageURL}</TableCell>
+                                                        <TableCell>{campaign.already ? 1 : 0}</TableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    </Collapse>
+                                </>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Grid>
+            <Grid item xs={12} md={6}>
+                <Typography variant="h6" gutterBottom>
+                    Schedule New Broadcast
+                </Typography>
+                <Paper style={{ padding: 16 }}>
+                    <FormControl fullWidth margin="normal">
+                        <InputLabel htmlFor="title">Campaign Title</InputLabel>
+                        <Input id="title" type="text" value={title} onChange={handleTitleChange} />
+                    </FormControl>
+                    <FormControl fullWidth margin="normal">
+                        <Input id="scheduled-date" type="datetime-local" value={scheduledDate} onChange={handleDateChange} />
+                    </FormControl>
+                    <TextField
+                        id="message"
+                        label="Enter Message"
+                        multiline
+                        rows={4}
+                        fullWidth
+                        margin="normal"
+                        value={message}
+                        onChange={handleMessageChange}
+                    />
+                    <FormControl fullWidth margin="normal">
+                        <InputLabel htmlFor="image-upload">Input Image URL</InputLabel>
+                        <Input id="image-upload" type="text" value={imageURL} onChange={handleImageURLChange} />
+                    </FormControl>
+                    <Button onClick={handleSchedule} variant="contained" color="primary" style={{ marginTop: 16 }}>
+                        Submit
+                    </Button>
+                </Paper>
+            </Grid>
+        </Grid>
     );
 };
 

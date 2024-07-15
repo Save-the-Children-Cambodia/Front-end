@@ -1,0 +1,9 @@
+.MuiTableCell-body {
+    background-image: url("../img/chevron-down.svg");
+    background-repeat: no-repeat;
+    background-position: 95%;
+}
+
+.MuiCollapse-entered, .MuiTableCell-sizeSmall {
+    background: none!important;
+}
