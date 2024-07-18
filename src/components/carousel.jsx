@@ -13,13 +13,13 @@ const CustomCarousel = ({ slides }) => {
   const getSlideIndicatorContent = (index) => {
     switch (index) {
       case 0:
-        return { icon: faVideo, text: "Videos" };
+        return { icon: faVideo, text: "វីដេអូ" };
       case 1:
-        return { icon: faFileAlt, text: "Documents" };
+        return { icon: faFileAlt, text: "ឯកសារ" };
       case 2:
-        return { icon: faMusic, text: "Audios" };
+        return { icon: faMusic, text: "សម្លេង" };
       case 3: 
-        return { icon: faImage, text: "Images" };
+        return { icon: faImage, text: "រូបភាព" };
       default:
         return { icon: null, text: "" };
     }
