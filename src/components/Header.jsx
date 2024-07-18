@@ -7,8 +7,8 @@ const Header = () => {
         <div className="header-container">
             <img src={logo_sci} alt="Logo_Save_the_Children" />
             <div className="header-container-text">
-                <h6>Save the Children</h6>
-                <p>Positive Parenting</p>
+                <h6>ParentingTips</h6>
+                <p>គន្លឹះការចិញ្ចឹមកូន</p>
             </div>
         </div>
     );
