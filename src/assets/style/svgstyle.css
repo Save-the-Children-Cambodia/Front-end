@@ -1,0 +1,14 @@
+.facebook-icon {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  
+  .facebook-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  .facebook-icon img {
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+  }
+  

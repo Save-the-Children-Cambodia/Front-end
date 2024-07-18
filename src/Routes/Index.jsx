@@ -12,6 +12,7 @@ import UpdateFiles from "../components/Update";
 import NewPage from '../layout/NewPage'
 import Admin from "../layout/admin";
 import OtherSelection from "../components/otherselection";
+import FeedbackV2 from "../layout/feedbackV2";
 
 const AppRouter = () => {
     return (
@@ -23,7 +24,7 @@ const AppRouter = () => {
                     <Route path="/audio" element={<AudioGallery />} />
                     <Route path="/document" element={<PDFViewer />} /> */}
                     <Route path="/login" element={<Login />} />
-
+                    <Route path="/feedback" element={<FeedbackV2 />} />
                     <Route path="/update" element={<UpdateFiles />} />
                     <Route path="/" element={<NewPage />} />
                     <Route path="/other" element={<OtherSelection />} />

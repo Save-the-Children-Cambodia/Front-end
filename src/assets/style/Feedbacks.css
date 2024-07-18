@@ -20,10 +20,39 @@
         padding-bottom: 1.5em;
         .container-feedback-icon
         {
-            img{
-                width: 5em;
-                height: 1.5em;
+            svg {
+                width: 30px;
+                height: 30px;
+                padding: 10px;
                 cursor: pointer;
+            }
+            svg:nth-child(1) {
+                g{
+                    &:hover {
+                        fill: rgba(27,116,228,1.0);
+                    }
+                }
+            }
+            svg:nth-child(2) {
+                g{
+                    &:hover {
+                        fill: #000;
+                    }
+                }
+            }
+            svg:nth-child(3) {
+                g{
+                    &:hover {
+                        fill: #0088cc;
+                    }
+                }
+            }
+            svg:nth-child(4) {
+                g{
+                    &:hover {
+                        fill: #000000;
+                    }
+                }
             }
         }
         .feedback-title{
