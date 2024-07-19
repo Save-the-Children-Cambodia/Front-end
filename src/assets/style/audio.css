@@ -1,6 +1,6 @@
 /* player.css */  
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap');
-.css-8n6ywc-MuiTypography-root {
+/* .css-8n6ywc-MuiTypography-root {
   font-family: Lato!important;
 }
 .video-players-container{
@@ -119,7 +119,7 @@
       }
     }
   }
-}
+} */
 @media screen and (min-width:210px) and (max-width:1023px) {
   .audio-card-container {
     gap: 20px;
@@ -175,13 +175,13 @@
     }
   }
 } 
-.audio-load-more{
+/* .audio-load-more{
   color: #DA291C;
   margin: 10px 0;
 }
 .audio-load-more:hover{
   color: #8e0900;
-}
+} */
 @media screen and (min-width: 350px) and (max-width: 500px) {
   .audio-title
   {

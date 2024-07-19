@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap');
+
+.audiov2-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .sort-container {
+        margin-bottom: 20px;
+    }
+    .search-input {
+        width: 70%;
+        padding: 20px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        font-size: 16px;
+        background-image: url("../img/search.svg");
+        background-repeat: no-repeat;
+        background-position: 97% 50%;
+        background-size: 25px;
+        height: 0.2em;
+    }
+    .search-input::placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+    .audio-card-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        .audio-card {
+            display: flex;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            .audio-image {
+                padding: 10px;
+                width: 24vw!important;
+                height: 30vh!important;
+            }
+            .audio-detail {
+                height: 90%;
+                padding: 0 10px;
+                .audio-title {
+                    font-weight: bold;
+                    font-size: 40px;
+                    margin-top: 10px;
+                }
+                .audio-date {
+                    font-size: 15px;
+                    font-style: italic;
+                }
+                .audio-description {
+                    color: black;
+                    font-size: 20px;
+                    font-weight: 400;
+                    height: 190px;
+                    width: 100%;
+                    max-width: 1000px;
+                    padding-right: 10px;
+                }
+            }
+            .audio-display {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px!important;
+                div {
+                  audio {
+                    width: 50vw;
+                  }
+                }
+            }
+            .play-button {
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 210px) and (max-width: 1023px) {
+    .audiov2-container {
+        .audio-card-container {
+            .audio-card {
+                flex-direction: column;
+                .audio-image {
+                    width: 100%!important;
+                }
+                .audio-display {
+                    align-items: center!important;
+                    div { 
+                        audio {
+                            width: 100%!important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

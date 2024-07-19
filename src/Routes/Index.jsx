@@ -12,7 +12,8 @@ import UpdateFiles from "../components/Update";
 import NewPage from '../layout/NewPage'
 import Admin from "../layout/admin";
 import OtherSelection from "../components/otherselection";
-import FeedbackV2 from "../layout/feedbackV2";
+// import FeedbackV2 from "../layout/feedbackV2";
+import FeedbackV2 from "../components/audio";
 
 const AppRouter = () => {
     return (
