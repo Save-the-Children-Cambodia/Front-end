@@ -36,7 +36,7 @@ function VideoData({ id , category}) {
     <div style={{ height: '100%', flexDirection: 'column', margin:"0vw 10vw"}}>
       {title && <h2 style={{fontSize:'32px'}}>{title}</h2>}
       <hr style={{width:'100%', margin:'3vh auto'}}/>
-      {upload && <p style={{fontSize:'16px', fontWeight:'bold'}}>Uploaded on: {upload}</p>}
+      {upload && <p style={{fontSize:'16px', fontWeight:'bold'}}>កាលបរិច្ឆេទ: {upload}</p>}
       <h3 style={{fontSize:'16px'}}>Description:</h3>
       {description && <p style={{fontSize:'16px'}}>{description}</p>}
     </div>

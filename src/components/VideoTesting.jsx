@@ -123,7 +123,7 @@ function VideoPlayers() {
               </div>              
               <div className="video-details-container">
                 <h2 className="video-title">{video.title}</h2>
-                <p className="upload-date">Uploaded on: {formatDate(video.Date)}</p>
+                <p className="upload-date">កាលបរិច្ឆេទ: {formatDate(video.Date)}</p>
                 <h6 className="description-heading">Description:</h6>
                 <p className="description" dangerouslySetInnerHTML={{ __html: limitDescription(video.description) }}></p>
               </div>
@@ -134,7 +134,7 @@ function VideoPlayers() {
       <div className="more-back">
         {sortedVideos.length > displayCount && (
           <div className='button-container'>
-            <button onClick={handleLoadMore} className="moreButton">LOAD MORE</button>
+            <button onClick={handleLoadMore} className="moreButton">មើលបន្ថែម</button>
           </div>
         )}
       </div>

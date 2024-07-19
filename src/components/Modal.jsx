@@ -14,11 +14,11 @@ function Modal({ image, onClose }) {
             <div className='Hellobro'>
               <div className="image-details">
                 <h2 className='image-title'>{image.title}</h2>
-                <p className="image-description">{image.description}</p>
+                <p className="image-description" dangerouslySetInnerHTML={{__html: (image.description)}}></p>
               </div>
               <div>
                 <p className="publication-date">
-                    Published on: {new Date(image.Date).toLocaleDateString()}
+                    កាលបរិច្ឆេទ: {new Date(image.Date).toLocaleDateString()}
                 </p>
               </div>
             </div>

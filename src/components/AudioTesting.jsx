@@ -160,7 +160,7 @@ function AudioGallery() {
               <Stack direction="column" alignItems="center" spacing={1} useFlexGap style={{paddingLeft: "10px"}}>
                 <div className='audio-detail'>
                   <h3 className='audio-title'>{audio.title}</h3>
-                  <p className='audio-date'>Upload on: {formatDate(audio.Date)}</p>
+                  <p className='audio-date'>កាលបរិច្ឆេទ: {formatDate(audio.Date)}</p>
                   <p className="audio-description" dangerouslySetInnerHTML={{ __html: limitDescription(audio.description)}}></p>
                 </div>
                 <div className="audio-display">

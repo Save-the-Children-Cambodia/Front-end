@@ -27,11 +27,17 @@
             }
             .phone-number, .email{
                 width: 300px;
-                height: 30px;
+                border-radius: 10px;
+                border: 2px solid #9e9e9e;
+                padding: 10px;
             }
-            .description {
-                width: 640px;
+            textarea{
+                width: 655px;
                 height: 100px;
+                padding: 10px;
+                border-radius: 10px;
+                border: 2px solid #9e9e9e;
+                font-size: 15px!important;
             }
         }
         .or {

@@ -13,8 +13,8 @@ const Feedback = () => {
     return (
         <div className="container-feedback">
             <div className="container-feedback-about">
-                <p className="feedback-title">About Me</p>
-                <p className="describe-aboutme">Welcome to the Positive Parenting website, a comprehensive resource dedicated to fostering a nurturing and supportive environment for children. Our mission is to help parents and caregivers create a loving, warm, and kind atmosphere where children can thrive.
+                <p className="feedback-title">អំពីពួកយើង</p>
+                <p className="describe-aboutme">សូមស្វាគមន៍មកកាន់គេហទំព័រ Positive Parenting ដែលជាគេហទំព័រដ៏ទូលំទូលាយដែលផ្សព្វផ្សាយដល់ការចិញ្ចឹមបីបាច់ថែរក្សា និងគាំទ្រដល់កុមារ។ បេសកកម្មរបស់យើងគឺដើម្បីជួយឪពុកម្តាយ និងអ្នកថែទាំបង្កើតបរិយាកាសប្រកបដោយក្តីស្រឡាញ់ ភាពកក់ក្តៅ និងចិត្តល្អ ដែលកុមារអាចលូតលាស់បានល្អ។
                 </p>
                 <div className="container-feedback-icon">
                     <svg className="facebook" version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +98,7 @@ const Feedback = () => {
                 </div>
             </div>
         <div className="container-feedback-report class-feedback">
-            <p className="feedback-title">FeedBack</p>
+            <p className="feedback-title">មតិយបល់បន្ថែម</p>
             <Stack className="hey-hey-hey">
                 <div className="container-feedback-input-identify">
                     <Autocomplete
