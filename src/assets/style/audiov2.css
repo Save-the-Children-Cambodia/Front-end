@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap');
+
 .audiov2-container {
     display: flex;
     flex-direction: column;
@@ -36,21 +38,24 @@
         flex-direction: column;
         align-items: center;
         gap: 20px;
+        padding: 0 4%;
         .audio-card {
+            width: 100%;
             display: flex;
             border: 1px solid #ccc;
             border-radius: 5px;
             .audio-image {
                 padding: 10px;
-                width: 24vw!important;
-                height: 30vh!important;
+                width: 320px;
+                box-sizing: border-box;
+                object-fit: cover;
             }
             .audio-detail {
                 height: 90%;
                 padding: 0 10px;
                 .audio-title {
                     font-weight: bold;
-                    font-size: 40px;
+                    font-size: 25px;
                     margin-top: 10px;
                 }
                 .audio-date {
@@ -72,9 +77,9 @@
                 align-items: center;
                 margin-bottom: 10px!important;
                 div {
-                  audio {
-                    width: 50vw;
-                  }
+                    audio {
+                        width: 50vw;
+                    }
                 }
             }
             .play-button {
@@ -84,21 +89,60 @@
     }
 }
 
-@media screen and (min-width: 210px) and (max-width: 1023px) {
+@media screen and (max-width: 1023px) {
+    .audiov2-container {
+        .audio-card-container {
+            flex-direction: column;
+            gap: 20px; /* Ensure gap is maintained */
+            padding: 0 5%;
+            .audio-card {
+                flex-direction: column;
+                .audio-display {
+                    align-items: center;
+                    div {
+                        audio {
+                            width: 80vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
     .audiov2-container {
         .audio-card-container {
             .audio-card {
-                flex-direction: column;
                 .audio-image {
-                    width: 100%!important;
+                    width: 100%;
+                    height: 40vh;
                 }
-                .audio-display {
-                    align-items: center!important;
-                    div { 
-                        audio {
-                            width: 100%!important;
-                        }
-                    }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 568px) and (max-width: 767px) {
+    .audiov2-container {
+        .audio-card-container {
+            .audio-card {
+                .audio-image {
+                    width: 100%;
+                    height: 20vh;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 567px) {
+    .audiov2-container {
+        .audio-card-container {
+            .audio-card {
+                .audio-image {
+                    width: 100%;
+                    height: 15vh;
                 }
             }
         }

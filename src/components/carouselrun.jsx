@@ -2,7 +2,8 @@ import React from 'react';
 import CustomCarousel from './carousel.jsx';
 import VideoTesting from './VideoTesting.jsx';
 import PDFViewer from "./DocuTesting";
-import AudioGallery from "./audio.jsx";
+import AudioGallery from './audio.jsx';
+// import AudioGallery from "./AudioTesting.jsx";
 import ImageGallery from './ImageTesting.jsx';
 import FileUpload from './file_upload.jsx';
 

@@ -7,6 +7,59 @@ import IconButton from '@mui/material/IconButton';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
 import "../assets/style/audiov2.css"
 
+const useScreenWidth = () => {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return screenWidth;
+};
+
+const limitDescription = (description, screenWidth) => {
+  if (!description) return '';
+  const words = description.split(' ');
+  let limit;
+
+  if (screenWidth < 200) {
+    limit = 10; // Small screens
+  } else if (screenWidth < 358) {
+    limit = 20; // Small screens
+  } else if (screenWidth < 504) {
+    limit = 25; // Small screens
+  } else if (screenWidth < 617) {
+    limit = 35; // Small screens
+  } else if (screenWidth < 703) {
+    limit = 45; // Medium screens
+  } else if (screenWidth < 823) {
+    limit = 55; // Medium screens
+  } else if (screenWidth < 910) {
+    limit = 65; // Medium screens
+  } else if (screenWidth < 1023) {
+    limit = 75; // Medium screens
+  } else if (screenWidth < 1125) {
+    limit = 50; // Small screens
+  } else if (screenWidth < 1200) {
+    limit = 60; // Medium screens
+  }  else if (screenWidth < 1300) {
+    limit = 70; // Medium screens
+  } else if (screenWidth < 1460) {
+    limit = 80; // Large screens
+  } else if (screenWidth < 2300) {
+    limit = 95; // Extra large screens
+  } else {
+    limit = 120; // Extra extra large screens or larger
+  }
+
+  if (words.length > limit) {
+    return words.slice(0, limit).join(' ') + '...';
+  }
+  return description;
+};
+
 function AudioGallery() {
   const [audios, setAudios] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,6 +67,7 @@ function AudioGallery() {
   const [searchQuery, setSearchQuery] = useState('');
   const [displayCount, setDisplayCount] = useState(3);
   const [sortBy, setSortBy] = useState('newest');
+  const screenWidth = useScreenWidth();
 
   useEffect(() => {
     const fetchAudios = async () => {
@@ -41,15 +95,6 @@ function AudioGallery() {
     } else {
       setCurrentAudio(audio);
     }
-  };
-
-  const limitDescription = (description) => {
-    if (!description) return '';
-    const words = description.split(' ');
-    if (words.length > 75) {
-      return words.slice(0, 75).join(' ') + '...';
-    }
-    return description;
   };
 
   const isYouTubeLink = (url) => {
@@ -126,7 +171,7 @@ function AudioGallery() {
               <div className='audio-detail'>
                 <h3 className='audio-title'>{audio.title}</h3>
                 <p className='audio-date'>កាលបរិច្ឆេទ: {formatDate(audio.Date)}</p>
-                <p className="audio-description" dangerouslySetInnerHTML={{ __html: limitDescription(audio.description) }}></p>
+                <p className="audio-description" dangerouslySetInnerHTML={{ __html: limitDescription(audio.description, screenWidth) }}></p>
                 <div className="audio-display">
                   <Stack className='play-container' spacing={1} useFlexGap>
                   <div className='audio-card-container'>
