@@ -34,11 +34,11 @@
         font-size: 16px;
     }
     .audio-card-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 0 4%;
+        display: flex!important;
+        flex-direction: column!important;
+        align-items: center!important;
+        gap: 20px!important;
+        padding: 0 4%!important;
         .audio-card {
             width: 100%;
             display: flex;
@@ -73,17 +73,17 @@
                 }
             }
             .audio-display {
-                display: flex;
-                align-items: center;
+                display: flex!important;
+                align-items: center!important;
                 margin-bottom: 10px!important;
                 div {
                     audio {
-                        width: 50vw;
+                        width: 50vw!important;
                     }
                 }
             }
             .play-button {
-                display: none;
+                display: none!important;
             }
         }
     }
