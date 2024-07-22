@@ -66,7 +66,7 @@ function ViewPDFPage() {
               <img src={pdf.imageURL} alt={pdf.title} />
               <h2 className="pdf-title">{pdf.title}</h2>
               <p className="pdf-date">កាលបរិច្ឆេទ: {pdf.Date}</p>
-              <p className="pdf-description">{pdf.description}</p>
+              <p className="pdf-description" dangerouslySetInnerHTML={{__html: (pdf.description)}}></p>
             </div>
             <div className='nest-pdf-link'>
                 <a href={pdf.url} target="_blank" rel="noopener noreferrer" className="pdf-link">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { collection, getDocs, query, where, } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig.js';
 import '../assets/style/ImageGallery.css';
 import Modal from './Modal';
@@ -11,6 +11,7 @@ function ImageGallery() {
   const [displayedImages, setDisplayedImages] = useState(8);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('newest');
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -38,6 +39,31 @@ function ImageGallery() {
     fetchImages();
   }, [searchQuery]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Clean up event listener on component unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (screenWidth < 524) {
+      setDisplayedImages(3); // For small screens
+    } else if (screenWidth <= 1174) {
+      setDisplayedImages(4); // For medium screens
+    } else if (screenWidth <= 1574) {
+      setDisplayedImages(6); // For large screens
+    } else if (screenWidth <= 2287) {
+      setDisplayedImages(8); // For extra large screens
+    } else if (screenWidth >= 2288) {
+      setDisplayedImages(10); // For extra extra large screens
+    }
+  }, [screenWidth]);
+
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
@@ -47,9 +73,9 @@ function ImageGallery() {
   };
 
   const handleShowMoreImages = () => {
-    setDisplayedImages(prev => prev + 8);
+    const incrementBy = screenWidth < 524 ? 3 : screenWidth <= 1174 ? 4 : screenWidth <= 1574 ? 6 : screenWidth <= 2287 ? 8 : 10;
+    setDisplayedImages(prev => prev + incrementBy);
   };
-
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -65,7 +91,6 @@ function ImageGallery() {
       return new Date(a.date) - new Date(b.date);
     }
   });
-  
 
   return (
     <div className="image-gallery-container video-players-container">
@@ -79,9 +104,9 @@ function ImageGallery() {
         />
         <div>
           <label htmlFor="sorts">Sort by:</label>
-          <select name="sorts" id="sorts">
-            <option value="newest" onClick={() => setSortBy('newest')}>Newest to Oldest</option>
-            <option value="oldest" onClick={() => setSortBy('oldest')}>Oldest to Newest</option>
+          <select name="sorts" id="sorts" onChange={(e) => setSortBy(e.target.value)}>
+            <option value="newest">Newest to Oldest</option>
+            <option value="oldest">Oldest to Newest</option>
           </select>
         </div>
       </div>
@@ -89,9 +114,9 @@ function ImageGallery() {
         {loading ? (
           <p>Loading images...</p>
         ) : (
-          images.slice(0, displayedImages).map(image => (
-            <div className='okkbrook'>
-              <div className="image" key={image.id} onClick={() => handleImageClick(image)}>
+          sortedImages.slice(0, displayedImages).map(image => (
+            <div className='okkbrook' key={image.id}>
+              <div className="image" onClick={() => handleImageClick(image)}>
                 <h2>{image.title}</h2>
                 <img src={image.url} alt={image.title} />
               </div>
@@ -100,8 +125,11 @@ function ImageGallery() {
         )}
       </div>
       {images.length > displayedImages && (
-        <center> <button onClick={handleShowMoreImages} className='more-button'>LOAD MORE</button> </center>
-      )}{selectedImage && (
+        <center>
+          <button onClick={handleShowMoreImages} className='more-button'>LOAD MORE</button>
+        </center>
+      )}
+      {selectedImage && (
         <Modal image={selectedImage} onClose={handleCloseModal} />
       )}
     </div>
