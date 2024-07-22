@@ -71,7 +71,7 @@ function ViewPDFPage() {
             <div className='nest-pdf-link'>
                 <a href={pdf.url} target="_blank" rel="noopener noreferrer" className="pdf-link">
                   {/* <span>{pdf.filename}</span> */}
-                  <p>View PDF</p>
+                  <p>អាន PDF</p>
                 </a>
             </div>
           </div>

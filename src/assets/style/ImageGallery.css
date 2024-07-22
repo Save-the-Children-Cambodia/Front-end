@@ -104,22 +104,9 @@
   }
 }
 
-@media screen and (min-width:1363px) and (max-width:1575px) {
+@media screen and (min-width:969px) and (max-width:1574px) {
   .image-gallery-container {
     .image-grid {
-      .okkbrook {
-        .image {
-          width: 25vw;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1362px) {
-  .image-gallery-container {
-    .image-grid {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       .okkbrook {
         .image {
           width: 30vw;
@@ -129,55 +116,22 @@
   }
 }
 
-@media screen and (max-width: 1175px) {
+@media screen and (max-width: 968px) {
   .image-gallery-container {
     .image-grid {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       .okkbrook {
         .image {
-          width: 30vw;
+          width: 60vw;
         }
       }
     }
   }
 }
 
-@media screen and (max-width: 1174px) {
-  .image-gallery-container {
-    .image-grid {
-      .okkbrook {
-        .image {
-          width: 40vw;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 774px) {
+@media screen and (max-width: 1124px) {
   .image-gallery-container {
     .image-grid {
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
   }
-}
-@media screen and (max-width: 649px) {
-  .image-gallery-container {
-    .image-grid {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-  } 
-}
-
-@media screen and (max-width: 524px) {
-  .image-gallery-container {
-    .image-grid {
-      .okkbrook {
-        .image {
-          width: 65vw;
-        }
-      }
-    }
-  }
-  
 }

@@ -51,16 +51,16 @@ function ImageGallery() {
   }, []);
 
   useEffect(() => {
-    if (screenWidth < 524) {
+    if (screenWidth <= 568) {
       setDisplayedImages(3); // For small screens
     } else if (screenWidth <= 1174) {
       setDisplayedImages(4); // For medium screens
     } else if (screenWidth <= 1574) {
-      setDisplayedImages(6); // For large screens
-    } else if (screenWidth <= 2287) {
-      setDisplayedImages(8); // For extra large screens
-    } else if (screenWidth >= 2288) {
-      setDisplayedImages(10); // For extra extra large screens
+      setDisplayedImages(4); // For large screens// For extra large screens
+    } else if (screenWidth <= 2281) {
+      setDisplayedImages(6); // For extra extra large screens
+    } else {
+      setDisplayedImages(8); // For extra extra extra large screens
     }
   }, [screenWidth]);
 

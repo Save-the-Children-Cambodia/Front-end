@@ -3,14 +3,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
+  width: 80vw;
   font-family: Lato;
   margin-top: 50px;
-}
-@media screen and (min-width:210px) and (max-width:1024px) {
-  .video-players-container {
-    margin-top: 35px;
-  }
 }
 
 .view-pdf-container {
@@ -53,7 +48,7 @@
     justify-content: center;
     gap: 20px;
     .pdf-item {
-      width: 20vw;
+      width: 15vw;
       border: 1px solid #ccc;
       border-radius: 5px;
       padding: 15px;
@@ -62,30 +57,9 @@
         margin-top: 10px;
       }
       img {
-        width: 20vw;
-        height: 30vh;
-      }
-      .button-a{
         width: 100%;
-        margin-top: 20px;
-        border-radius: 10px;
-        height: 40px;
-        background-color: rgb(255, 240, 240);
-        .pdf-link {
-          font-size: 18px;
-          font-weight: bold;
-          color: #DA291C;
-          text-decoration: none;
-        }
+        height: 25vh;
       }
-      .button-a:hover{
-        cursor: pointer;
-        background-color: #DA291C;
-        color: rgb(255, 240, 240);
-        .pdf-link:hover {
-          color: rgb(255, 240, 240);
-      }
-    }
       .pdf-description {
         margin-top: 10px;
       }
@@ -96,6 +70,36 @@
     }
   }
 }
+
+.pdf-link{
+  text-decoration: none;
+  color: #DA291C;
+  background-color: rgb(255, 240, 240);
+  width: 80%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.pdf-link:hover{
+  color: rgb(255, 240, 240);
+  background-color: #DA291C;
+}
+.nest-pdf-link{
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media screen and (min-width:210px) and (max-width:1024px) {
+  .video-players-container {
+    margin-top: 35px;
+  }
+}
+
 @media screen and (min-width: 1280px) and (max-width:1439px) {
   .view-pdf-container {
     .pdf-list {
@@ -148,27 +152,4 @@
       }
     }
   }
-}
-
-.pdf-link{
-  text-decoration: none;
-  color: #DA291C;
-  background-color: rgb(255, 240, 240);
-  width: 80%;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-}
-.pdf-link:hover{
-  color: rgb(255, 240, 240);
-  background-color: #DA291C;
-}
-.nest-pdf-link{
-  margin-top: 1em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
 }
