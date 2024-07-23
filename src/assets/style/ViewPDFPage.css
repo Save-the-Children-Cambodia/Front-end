@@ -48,7 +48,9 @@
     justify-content: center;
     gap: 20px;
     .pdf-item {
-      width: 15vw;
+      display: flex;
+      width: 70vw;
+      gap: 20px;
       border: 1px solid #ccc;
       border-radius: 5px;
       padding: 15px;
@@ -57,7 +59,7 @@
         margin-top: 10px;
       }
       img {
-        width: 100%;
+        width: 20%;
         height: 25vh;
       }
       .pdf-description {
@@ -66,6 +68,7 @@
       .pdf-date {
         margin-top: 10px;
         font-style: italic;
+        font-size: 16px;
       }
     }
   }
@@ -73,24 +76,19 @@
 
 .pdf-link{
   text-decoration: none;
-  color: #DA291C;
-  background-color: rgb(255, 240, 240);
-  width: 80%;
-  height: 40px;
+  background-color: #DA291C;
+  color: #fff;
+  width: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-}
-.pdf-link:hover{
-  color: rgb(255, 240, 240);
-  background-color: #DA291C;
+  &:hover {
+    background-color: #ea1000;
+  }
 }
 .nest-pdf-link{
   margin-top: 1em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
 }
 

@@ -151,12 +151,13 @@ function AudioGallery() {
       <div className="sort-container">
         <label htmlFor="sorts">តម្រៀប តាម:</label>
         <select
+          style={{fontSize: "20px", background: "none", marginTop: "-6px", padding: "5px"}}
           name="sorts"
           id="sorts"
           onChange={(e) => setSortBy(e.target.value)}
         >
-          <option value="newest">ថ្មី មក ចាស់</option>
-          <option value="oldest">ចាស់ មក ថ្មី</option>
+          <option value="newest">ថ្មីៗ</option>
+          <option value="oldest">ចាស់ៗ</option>
         </select>
       </div>
       {loading ? (

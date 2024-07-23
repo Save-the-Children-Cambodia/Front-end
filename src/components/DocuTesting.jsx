@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs, query, orderBy, where } from 'firebase/firestore'; // Import necessary Firestore functions
+import { collection, getDocs, query, orderBy, where, Timestamp } from 'firebase/firestore'; // Import necessary Firestore functions
 import { db } from '../firebaseConfig';
 import '../assets/style/ViewPDFPage.css';
 import Loading from './loading';
@@ -47,6 +47,15 @@ function ViewPDFPage() {
     setSortOption(event.target.value);
   };
 
+  const formatDate = (timestamp) => {
+    if (timestamp instanceof Date) {
+      return timestamp.toDateString();
+    } else {
+      const dateObject = new Date(timestamp?.seconds * 1000);
+      return dateObject.toDateString();
+    }
+  };
+
   return (
     <div className="view-pdf-container video-players-container">
       <div className="input-container">
@@ -59,9 +68,9 @@ function ViewPDFPage() {
         />
         <div className='sort-select'>
           <label htmlFor="sortOption">តម្រៀប តាម: </label>
-          <select id="sortOption" value={sortOption} onChange={handleSortChange}>
-            <option value="newest">ថ្មី មក ចាស់</option>
-            <option value="oldest">ចាស់ មក ថ្មី</option>
+          <select id="sortOption" style={{fontSize: "20px", background: "none", marginTop: "-6px", padding: "5px"}} value={sortOption} onChange={handleSortChange}>
+            <option value="newest">ថ្មីៗ</option>
+            <option value="oldest">ចាស់ៗ</option>
           </select>
         </div>
       </div>
@@ -77,18 +86,19 @@ function ViewPDFPage() {
           ) : (
             pdfs.map((pdf, index) => (
               <div key={index} className="pdf-item pdf-item-more">
-                <div>
-                  <img src={pdf.imageURL} alt={pdf.title} />
+                <img src={pdf.imageURL} alt={pdf.title} />
+                <div className='pdf-content'>
                   <h2 className="pdf-title">{pdf.title}</h2>
-                  <p className="pdf-date">កាលបរិច្ឆេទ: {pdf.Date}</p>
+                  <p className="pdf-date">កាលបរិច្ឆេទ: {formatDate(pdf.Date)}</p>
                   <p className="pdf-description" dangerouslySetInnerHTML={{ __html: (pdf.description) }}></p>
+                  <div className='nest-pdf-link'>
+                    <a href={pdf.url} target="_blank" rel="noopener noreferrer" className="pdf-link">
+                      {/* <span>{pdf.filename}</span> */}
+                      <p>អាន PDF</p>
+                    </a>
                 </div>
-                <div className='nest-pdf-link'>
-                  <a href={pdf.url} target="_blank" rel="noopener noreferrer" className="pdf-link">
-                    {/* <span>{pdf.filename}</span> */}
-                    <p>អាន PDF</p>
-                  </a>
                 </div>
+                
               </div>
             ))
           )}
