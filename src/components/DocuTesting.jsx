@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { collection, getDocs, query, orderBy, where } from 'firebase/firestore'; // Import necessary Firestore functions
 import { db } from '../firebaseConfig';
 import '../assets/style/ViewPDFPage.css';
+import Loading from './loading';
 
 function ViewPDFPage() {
   const [pdfs, setPdfs] = useState([]);

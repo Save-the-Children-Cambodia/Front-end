@@ -4,6 +4,7 @@ import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { db } from '../firebaseConfig.js';
 import { useNavigate } from 'react-router-dom';
 import "../assets/style/player.css";
+import Loading from './loading.jsx';
 
 function VideoPlayers() {
   const [videos, setVideos] = useState([]);
@@ -21,9 +22,12 @@ function VideoPlayers() {
 
         if (searchQuery) {
           const searchQueryLower = searchQuery.toLowerCase();
-          q = query(videosCollection, orderBy('title'),
-                    where('topicLower', '>=', searchQueryLower),
-                    where('topicLower', '<=', searchQueryLower + '\uf8ff'));
+          q = query(
+            videosCollection,
+            orderBy('title'),
+            where('topicLower', '>=', searchQueryLower),
+            where('topicLower', '<=', searchQueryLower + '\uf8ff')
+          );
         } else {
           q = query(videosCollection, orderBy('Date', sortOption === 'newest' ? 'desc' : 'asc'));
         }
@@ -36,9 +40,9 @@ function VideoPlayers() {
         }));
 
         setVideos(videosData);
-        setLoading(false);
       } catch (error) {
         console.error('Error fetching videos:', error);
+      } finally {
         setLoading(false);
       }
     };
@@ -59,7 +63,7 @@ function VideoPlayers() {
     if (timestamp instanceof Date) {
       return timestamp.toDateString();
     } else {
-      const dateObject = new Date(timestamp.seconds * 1000);
+      const dateObject = new Date(timestamp?.seconds * 1000);
       return dateObject.toDateString();
     }
   };
@@ -108,7 +112,7 @@ function VideoPlayers() {
         </div>
       </div>
       {loading ? (
-        <p className="loading-text">Loading videos...</p>
+        <Loading />
       ) : (
         <div className="video-container">
           {sortedVideos.slice(0, displayCount).map(video => (
@@ -118,9 +122,9 @@ function VideoPlayers() {
                   className="react-player"
                   url={video.url}
                   controls
-                  width="120%"
+                  width="100%"
                 />
-              </div>              
+              </div>
               <div className="video-details-container">
                 <h2 className="video-title">{video.title}</h2>
                 <p className="upload-date">កាលបរិច្ឆេទ: {formatDate(video.Date)}</p>
