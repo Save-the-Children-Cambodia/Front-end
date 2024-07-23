@@ -3,6 +3,8 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig.js';
 import '../assets/style/ImageGallery.css';
 import Modal from './Modal';
+import Loading from './loading';
+import Empty from "../assets/img/box.svg";
 
 function ImageGallery() {
   const [images, setImages] = useState([]);
@@ -59,8 +61,8 @@ function ImageGallery() {
       setDisplayedImages(4); // For large screens// For extra large screens
     } else if (screenWidth <= 2281) {
       setDisplayedImages(6); // For extra extra large screens
-    } else {
-      setDisplayedImages(8); // For extra extra extra large screens
+    } else if (screenWidth >= 2282) {
+      setDisplayedImages(8); // For extra extra large screens
     }
   }, [screenWidth]);
 
@@ -103,25 +105,33 @@ function ImageGallery() {
           className='search-input'
         />
         <div>
-          <label htmlFor="sorts">Sort by:</label>
+          <label htmlFor="sorts">តម្រៀប តាម: </label>
           <select name="sorts" id="sorts" onChange={(e) => setSortBy(e.target.value)}>
-            <option value="newest">Newest to Oldest</option>
-            <option value="oldest">Oldest to Newest</option>
+            <option value="newest">ថ្មី មក ចាស់</option>
+            <option value="oldest">ចាស់ មក ថ្មី</option>
           </select>
         </div>
       </div>
       <div className="image-grid">
         {loading ? (
-          <p>Loading images...</p>
+          <Loading/>
         ) : (
-          sortedImages.slice(0, displayedImages).map(image => (
-            <div className='okkbrook' key={image.id}>
-              <div className="image" onClick={() => handleImageClick(image)}>
-                <h2>{image.title}</h2>
-                <img src={image.url} alt={image.title} />
+          
+            sortedImages.length === 0 ? (
+              <div className="empty-component" style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                <img src={Empty} style={{height: "256px" }} alt="PDF និងមានក្នុងពេលឆាប់ៗនេះ" />
+                <p style={{textAlign: "center", color: "#ccc"}}>ឯកសាររូបភាព និងមានក្នុងពេលឆាប់ៗនេះ</p>
               </div>
-            </div>
-          ))
+              ) : (
+                sortedImages.slice(0, displayedImages).map(image => (
+                  <div className='okkbrook' key={image.id}>
+                    <div className="image" onClick={() => handleImageClick(image)}>
+                      <h2>{image.title}</h2>
+                      <img src={image.url} alt={image.title} />
+                    </div>
+                  </div>
+                ))
+            )
         )}
       </div>
       {images.length > displayedImages && (

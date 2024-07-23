@@ -5,6 +5,7 @@ import { db } from '../firebaseConfig.js';
 import { useNavigate } from 'react-router-dom';
 import "../assets/style/player.css";
 import Loading from './loading.jsx';
+import Empty from "../assets/img/box.svg";
 
 function VideoPlayers() {
   const [videos, setVideos] = useState([]);
@@ -104,10 +105,10 @@ function VideoPlayers() {
           className="search-input"
         />
         <div className='sort-select'>
-          <label htmlFor="sortOption">Sort by:</label>
+          <label htmlFor="sortOption">តម្រៀប តាម: </label>
           <select id="sortOption" className='sortOptionmore' value={sortOption} onChange={handleSortChange}>
-            <option value="newest">Newest to Oldest</option>
-            <option value="oldest">Oldest to Newest</option>
+            <option value="newest">ថ្មី មក ចាស់</option>
+            <option value="oldest">ចាស់ មក ថ្មី</option>
           </select>
         </div>
       </div>
@@ -115,24 +116,31 @@ function VideoPlayers() {
         <Loading />
       ) : (
         <div className="video-container">
-          {sortedVideos.slice(0, displayCount).map(video => (
-            <div className="video-item" key={video.id}>
-              <div className="video-player-wrapper">
-                <ReactPlayer
-                  className="react-player"
-                  url={video.url}
-                  controls
-                  width="100%"
-                />
-              </div>
-              <div className="video-details-container">
-                <h2 className="video-title">{video.title}</h2>
-                <p className="upload-date">កាលបរិច្ឆេទ: {formatDate(video.Date)}</p>
-                <h6 className="description-heading">Description:</h6>
-                <p className="description" dangerouslySetInnerHTML={{ __html: limitDescription(video.description) }}></p>
-              </div>
+          {sortedVideos.length === 0 ? (
+            <div className="empty-component" style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+              <img src={Empty} style={{height: "256px" }} alt="No videos available" />
+              <p style={{textAlign: "center", color: "#ccc"}}>ឯកសារវីដេអូរនឹងមានក្នុងពេលឆាប់ៗនេះ</p>
             </div>
-          ))}
+          ) : (
+            sortedVideos.slice(0, displayCount).map(video => (
+              <div className="video-item" key={video.id}>
+                <div className="video-player-wrapper">
+                  <ReactPlayer
+                    className="react-player"
+                    url={video.url}
+                    controls
+                    width="100%"
+                  />
+                </div>
+                <div className="video-details-container">
+                  <h2 className="video-title">{video.title}</h2>
+                  <p className="upload-date">កាលបរិច្ឆេទ: {formatDate(video.Date)}</p>
+                  <h6 className="description-heading">Description:</h6>
+                  <p className="description" dangerouslySetInnerHTML={{ __html: limitDescription(video.description) }}></p>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       )}
       <div className="more-back">

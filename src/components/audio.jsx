@@ -6,6 +6,8 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
 import "../assets/style/audiov2.css"
+import Loading from './loading';
+import Empty from "../assets/img/box.svg";
 
 const useScreenWidth = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -147,84 +149,91 @@ function AudioGallery() {
         placeholder="ស្វែងរកសារសម្លេងតាមរយះចំណងជើង..."
       />
       <div className="sort-container">
-        <label htmlFor="sorts">Sort by:</label>
+        <label htmlFor="sorts">តម្រៀប តាម:</label>
         <select
           name="sorts"
           id="sorts"
           onChange={(e) => setSortBy(e.target.value)}
         >
-          <option value="newest">Newest to Oldest</option>
-          <option value="oldest">Oldest to Newest</option>
+          <option value="newest">ថ្មី មក ចាស់</option>
+          <option value="oldest">ចាស់ មក ថ្មី</option>
         </select>
       </div>
       {loading ? (
-        <p>Loading audios...</p>
+        <Loading/>
       ) : (
         <div className='audio-card-container'>
-          {sortedAudios.slice(0, displayCount).map(audio => (
-            <div key={audio.id} className="audio-card">
-              <img
-                className='audio-image'
-                alt={audio.title}
-                src={audio.imageURL}
-              />
-              <div className='audio-detail'>
-                <h3 className='audio-title'>{audio.title}</h3>
-                <p className='audio-date'>កាលបរិច្ឆេទ: {formatDate(audio.Date)}</p>
-                <p className="audio-description" dangerouslySetInnerHTML={{ __html: limitDescription(audio.description, screenWidth) }}></p>
-                <div className="audio-display">
-                  <Stack className='play-container' spacing={1} useFlexGap>
-                  <div className='audio-card-container'>
-                    <IconButton
-                      className='play-button'
-                      aria-label='Play music'
-                      onClick={() => playAudio(audio)}
-                      sx={{ mx: 1 }}
-                    >
-                      <PlayArrowRounded />
-                    </IconButton>
-                    <audio id={`audio-${audio.id}`} controls>
-                      <source src={audio.url} type='audio/mpeg' />
-                      Your browser does not support the audio element.
-                    </audio>
-                  </div>
-
-                </Stack>
-                {currentAudio && currentAudio.id === audio.id && (
-                  <div>
-                    {isYouTubeLink(audio.url) ? (
-                      <iframe
-                        title="YouTube video player"
-                        width="100%"
-                        height="100"
-                        src={`https://www.youtube.com/embed/${extractYouTubeVideoId(audio.url)}`}
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
-                      ></iframe>
-                    ) : isSoundCloudLink(audio.url) ? (
-                      <iframe
-                        title="SoundCloud audio player"
-                        width="100%"
-                        height="100%"
-                        scrolling="no"
-                        frameborder="no"
-                        allow="autoplay"
-                        src={`https://w.soundcloud.com/player/?url=${encodeURIComponent(audio.url)}`}
-                      ></iframe>
-                    ) : (
-                      <audio controls autoPlay>
-                        <source src={audio.url} type="audio/mpeg" />
+          {sortedAudios.length === 0 ? (
+            <div className="empty-component" style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+              <img src={Empty} style={{height: "256px" }} alt="No videos available" />
+              <p style={{textAlign: "center", color: "#ccc"}}>ឯកសារសម្លេងនឹងមានក្នុងពេលឆាប់ៗនេះ</p>
+            </div>
+          ) : (
+            sortedAudios.slice(0, displayCount).map(audio => (
+              <div key={audio.id} className="audio-card">
+                <img
+                  className='audio-image'
+                  alt={audio.title}
+                  src={audio.imageURL}
+                />
+                <div className='audio-detail'>
+                  <h3 className='audio-title'>{audio.title}</h3>
+                  <p className='audio-date'>កាលបរិច្ឆេទ: {formatDate(audio.Date)}</p>
+                  <p className="audio-description" dangerouslySetInnerHTML={{ __html: limitDescription(audio.description, screenWidth) }}></p>
+                  <div className="audio-display">
+                    <Stack className='play-container' spacing={1} useFlexGap>
+                    <div className='audio-card-container'>
+                      <IconButton
+                        className='play-button'
+                        aria-label='Play music'
+                        onClick={() => playAudio(audio)}
+                        sx={{ mx: 1 }}
+                      >
+                        <PlayArrowRounded />
+                      </IconButton>
+                      <audio id={`audio-${audio.id}`} controls>
+                        <source src={audio.url} type='audio/mpeg' />
                         Your browser does not support the audio element.
                       </audio>
-                    )}
+                    </div>
+
+                  </Stack>
+                  {currentAudio && currentAudio.id === audio.id && (
+                    <div>
+                      {isYouTubeLink(audio.url) ? (
+                        <iframe
+                          title="YouTube video player"
+                          width="100%"
+                          height="100"
+                          src={`https://www.youtube.com/embed/${extractYouTubeVideoId(audio.url)}`}
+                          frameborder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowfullscreen
+                        ></iframe>
+                      ) : isSoundCloudLink(audio.url) ? (
+                        <iframe
+                          title="SoundCloud audio player"
+                          width="100%"
+                          height="100%"
+                          scrolling="no"
+                          frameborder="no"
+                          allow="autoplay"
+                          src={`https://w.soundcloud.com/player/?url=${encodeURIComponent(audio.url)}`}
+                        ></iframe>
+                      ) : (
+                        <audio controls autoPlay>
+                          <source src={audio.url} type="audio/mpeg" />
+                          Your browser does not support the audio element.
+                        </audio>
+                      )}
+                    </div>
+                  )}
                   </div>
-                )}
                 </div>
+                
               </div>
-              
-            </div>
-          ))}
+            ))
+          )}
         </div>
       )}
       {filteredAudios.length > displayCount && (
