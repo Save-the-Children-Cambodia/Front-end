@@ -64,7 +64,20 @@
             font-weight: bold;
         }
     }
+    .submit-btn {
+        background-color: #DA291C;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        padding: 0.5em 3em;
+        font-size: 20px;
+        cursor: pointer;
+        margin-top: 1em;
+        &:hover {
+            background-color: #ea1000;
+        }
     
+    }
 }
 .describe-aboutme
 {
@@ -102,7 +115,7 @@
     }
     #free-solo-demoddd
     {
-        width: 40.5em;
+        width: 39em;
         height: 2.5em;
     }
    

@@ -8,7 +8,6 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 
-
 const Feedback = () => {
     return (
         <div className="container-feedback">
@@ -97,56 +96,57 @@ const Feedback = () => {
                     </svg>
                 </div>
             </div>
-        <div className="container-feedback-report class-feedback">
-            <p className="feedback-title">មតិយបល់បន្ថែម</p>
-            <Stack className="hey-hey-hey">
-                <div className="container-feedback-input-identify">
-                    <Autocomplete
-                        id="free-solo-demo"
-                        freeSolo
-                        options={top100Films.map((option) => option.title)}
-                        renderInput={(params) => 
-                        <TextField 
-                            {...params} 
-                            label="អុីម៉ែល" 
-                            type="email"
-                        />}
-                    />
-                    <p className="or-or-or">ឬ</p>
-                    <Autocomplete
-                        freeSolo
-                        id="free-solo-2-demo"
-                        disableClearable
-                        options={top100Films.map((option) => option.title)}
-                        renderInput={(params) => (
-                        <TextField
-                            {...params}
-                            label="លេខទូរស័ព្ទ"
-                            InputProps={{
-                            ...params.InputProps,
-                            type: 'search',
-                            }}
+            <div className="container-feedback-report class-feedback">
+                <p className="feedback-title">មតិយោបល់បន្ថែម</p>
+                <Stack className="hey-hey-hey">
+                    <div className="container-feedback-input-identify">
+                        <Autocomplete
+                            id="free-solo-demo"
+                            freeSolo
+                            options={top100Films.map((option) => option.title)}
+                            renderInput={(params) => 
+                            <TextField 
+                                {...params} 
+                                label="អុីម៉ែល" 
+                                type="email"
+                            />}
                         />
-                        )}
-                    />
-                </div>
-            </Stack>
-            <Stack className="hey-hey-hey">
-                <div className="container-feedback-input-identify">
-                    <Autocomplete
-                        id="free-solo-demoddd"
-                        freeSolo
-                        options={top100Films.map((option) => option.title)}
-                        renderInput={(params) => 
-                        <TextField 
-                            {...params} 
-                            label="Text Here..." 
-                            type="email"
-                        />}
-                    />
-                </div>
-            </Stack>
-        </div>
+                        <p className="or-or-or">ឬ</p>
+                        <Autocomplete
+                            freeSolo
+                            id="free-solo-2-demo"
+                            disableClearable
+                            options={top100Films.map((option) => option.title)}
+                            renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                label="លេខទូរស័ព្ទ"
+                                InputProps={{
+                                ...params.InputProps,
+                                type: 'search',
+                                }}
+                            />
+                            )}
+                        />
+                    </div>
+                </Stack>
+                <Stack className="hey-hey-hey">
+                    <div className="container-feedback-input-identify">
+                        <Autocomplete
+                            id="free-solo-demoddd"
+                            freeSolo
+                            options={top100Films.map((option) => option.title)}
+                            renderInput={(params) => 
+                            <TextField 
+                                {...params} 
+                                label="មតិយោបល់បន្ថែម" 
+                                type="text"
+                            />}
+                        />
+                    </div>
+                </Stack>
+                <button type="submit" className="submit-btn">បញ្ជូន</button>
+            </div>
         </div>
     );
 }
