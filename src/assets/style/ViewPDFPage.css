@@ -59,8 +59,8 @@
         margin-top: 10px;
       }
       img {
-        width: 20%;
-        height: 25vh;
+        width: 100%;
+        height: 50vh;
       }
       .pdf-description {
         margin-top: 10px;
@@ -93,9 +93,9 @@
 }
 
 @media screen and (min-width:210px) and (max-width:1024px) {
-  .video-players-container {
+  /* .video-players-container {
     margin-top: 35px;
-  }
+  } */
 }
 
 @media screen and (min-width: 1280px) and (max-width:1439px) {
@@ -123,20 +123,16 @@
 @media screen and (min-width:568px) and (max-width:1023px) {
   .view-pdf-container {
     .pdf-list {
-      flex-wrap: wrap;
-      width: 80vw;
       .pdf-item {
-        width: 30vw;
         img {
-          width: 30vw;
-          height: 15vh;
+          height: 21vh;
         }
       }
     }
   }
 }
 @media screen and (min-width:210px) and (max-width:567px) {
-  .view-pdf-container {
+  /* .view-pdf-container {
     .pdf-list {
       flex-wrap: wrap;
       width: 80vw;
@@ -149,5 +145,5 @@
         }
       }
     }
-  }
+  } */
 }
