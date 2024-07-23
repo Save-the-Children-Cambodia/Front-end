@@ -61,7 +61,6 @@ html {
       .video-player-wrapper {
         padding: 2%!important;
         width: 35%;
-        margin-right: 4%;
         .react-player {
           width: 80%;
           border-radius: 5px;
