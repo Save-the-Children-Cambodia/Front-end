@@ -10,6 +10,7 @@ function ViewPDFPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOption, setSortOption] = useState('newest');
   const [loading, setLoading] = useState(true);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +38,16 @@ function ViewPDFPage() {
     };
 
     fetchData();
+
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, [searchQuery, sortOption]);
 
   const handleSearchInputChange = event => {
@@ -53,6 +64,23 @@ function ViewPDFPage() {
     } else {
       const dateObject = new Date(timestamp?.seconds * 1000);
       return dateObject.toDateString();
+    }
+  };
+
+  const truncateText = (text, maxLength) => {
+    if (!text) return '';
+    return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+  };
+
+  const getTruncateLength = (type) => {
+    if (screenWidth < 576) {
+      return type === 'title' ? 30 : 50;
+    } else if (screenWidth < 878) {
+      return type === 'title' ? 40 : 170;
+    } else if (screenWidth < 949) {
+      return type === 'title' ? 75 : 300;
+    } else {
+      return type === 'title' ? 80 : 350;
     }
   };
 
@@ -88,17 +116,15 @@ function ViewPDFPage() {
               <div key={index} className="pdf-item pdf-item-more">
                 <img src={pdf.imageURL} alt={pdf.title} />
                 <div className='pdf-content'>
-                  <h2 className="pdf-title">{pdf.title}</h2>
+                  <h2 className="pdf-title">{truncateText(pdf.title, getTruncateLength('title'))}</h2>
                   <p className="pdf-date">កាលបរិច្ឆេទ: {formatDate(pdf.Date)}</p>
-                  <p className="pdf-description" dangerouslySetInnerHTML={{ __html: (pdf.description) }}></p>
+                  <p className="pdf-description" dangerouslySetInnerHTML={{ __html: truncateText(pdf.description, getTruncateLength('description')) }}></p>
                   <div className='nest-pdf-link'>
                     <a href={pdf.url} target="_blank" rel="noopener noreferrer" className="pdf-link">
-                      {/* <span>{pdf.filename}</span> */}
                       <p>អាន PDF</p>
                     </a>
+                  </div>
                 </div>
-                </div>
-                
               </div>
             ))
           )}

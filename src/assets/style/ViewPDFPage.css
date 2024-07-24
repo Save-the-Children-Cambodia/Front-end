@@ -59,8 +59,8 @@
         margin-top: 10px;
       }
       img {
-        width: 100%;
-        height: 50vh;
+        width: 300px;
+        height: 350px;
       }
       .pdf-description {
         margin-top: 10px;
@@ -90,26 +90,49 @@
 .nest-pdf-link{
   margin-top: 1em;
   width: 100%;
-}
-
-@media screen and (min-width:210px) and (max-width:1024px) {
-  /* .video-players-container {
-    margin-top: 35px;
-  } */
+  display: flex;
+  align-items: end;
 }
 
 @media screen and (min-width: 1280px) and (max-width:1439px) {
   .view-pdf-container {
     .pdf-list {
       .pdf-item {
-        img {
+        /* img {
           height: 27vh;
+        } */
+      }
+    }
+  }
+}
+@media screen and (min-width:681px) and (max-width:1079px) {
+  .view-pdf-container {
+    .pdf-list {
+      .pdf-item {
+        img {
+          width: 300px;
+          height: 360px;
         }
       }
     }
   }
 }
-@media screen and (min-width:1024px) and (max-width:1279px) {
+@media screen and (max-width:949px) {
+  .view-pdf-container {
+    .pdf-list {
+      .pdf-item {
+        .pdf-content {
+          .nest-pdf-link {
+            .pdf-link {
+              width: 130px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width:200px) and (max-width:680px) {
   .view-pdf-container {
     .pdf-list {
       .pdf-item {
@@ -119,31 +142,4 @@
       }
     }
   }
-}
-@media screen and (min-width:568px) and (max-width:1023px) {
-  .view-pdf-container {
-    .pdf-list {
-      .pdf-item {
-        img {
-          height: 21vh;
-        }
-      }
-    }
-  }
-}
-@media screen and (min-width:210px) and (max-width:567px) {
-  /* .view-pdf-container {
-    .pdf-list {
-      flex-wrap: wrap;
-      width: 80vw;
-      gap: 5px;
-      .pdf-item {
-        width: 70vw;
-        img {
-          width: 70vw;
-          height: 20vh;
-        }
-      }
-    }
-  } */
 }
