@@ -161,7 +161,9 @@ function AudioGallery() {
         </select>
       </div>
       {loading ? (
-        <Loading/>
+        <div className="loading-class">
+          <Loading/>
+        </div>
       ) : (
         <div className='audio-card-container'>
           {sortedAudios.length === 0 ? (

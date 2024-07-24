@@ -73,12 +73,18 @@ function ViewPDFPage() {
   };
 
   const getTruncateLength = (type) => {
-    if (screenWidth < 576) {
-      return type === 'title' ? 30 : 50;
-    } else if (screenWidth < 878) {
-      return type === 'title' ? 40 : 170;
+    if (screenWidth < 200) {
+      return type === 'title' ? 30 : 20;
+    } else if (screenWidth < 589) {
+      return type === 'title' ? 15 : 50;
+    } else if (screenWidth < 699) {
+      return type === 'title' ? 15 : 190;
+    } else if (screenWidth < 800) {
+      return type === 'title' ? 50 : 230;
+    } else if (screenWidth < 884) {
+      return type === 'title' ? 75 : 280;
     } else if (screenWidth < 949) {
-      return type === 'title' ? 75 : 300;
+      return type === 'title' ? 80 : 330;
     } else {
       return type === 'title' ? 80 : 350;
     }

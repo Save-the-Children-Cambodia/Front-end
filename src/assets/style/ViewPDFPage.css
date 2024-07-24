@@ -81,7 +81,6 @@
   width: 200px;
   display: flex;
   justify-content: center;
-  align-items: center;
   border-radius: 10px;
   &:hover {
     background-color: #ea1000;
@@ -90,28 +89,28 @@
 .nest-pdf-link{
   margin-top: 1em;
   width: 100%;
-  display: flex;
-  align-items: end;
 }
 
-@media screen and (min-width: 1280px) and (max-width:1439px) {
-  .view-pdf-container {
-    .pdf-list {
-      .pdf-item {
-        /* img {
-          height: 27vh;
-        } */
-      }
-    }
-  }
-}
-@media screen and (min-width:681px) and (max-width:1079px) {
+@media screen and (min-width:699px) and (max-width:1079px) {
   .view-pdf-container {
     .pdf-list {
       .pdf-item {
         img {
-          width: 300px;
+          width: 230px;
           height: 360px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width:698px) {
+  .view-pdf-container {
+    .pdf-list {
+      .pdf-item {
+        img {
+          width: 200px;
+          height: 310px;
         }
       }
     }
@@ -132,12 +131,21 @@
     }
   }
 }
-@media screen and (min-width:200px) and (max-width:680px) {
+
+@media screen and (min-width: 200px) and (max-width:588px) {
   .view-pdf-container {
     .pdf-list {
       .pdf-item {
+        .pdf-content {
+          .nest-pdf-link {
+            .pdf-link {
+              width: 100px;
+            }
+          }
+        }
         img {
-          height: 21vh;
+          width: 120px;
+          height: 170px;
         }
       }
     }

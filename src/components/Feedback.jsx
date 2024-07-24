@@ -15,6 +15,10 @@ const Feedback = () => {
                 <p className="feedback-title">អំពីពួកយើង</p>
                 <p className="describe-aboutme">សូមស្វាគមន៍មកកាន់គេហទំព័រ Positive Parenting ដែលជាគេហទំព័រដ៏ទូលំទូលាយដែលផ្សព្វផ្សាយដល់ការចិញ្ចឹមបីបាច់ថែរក្សា និងគាំទ្រដល់កុមារ។ បេសកកម្មរបស់យើងគឺដើម្បីជួយឪពុកម្តាយ និងអ្នកថែទាំបង្កើតបរិយាកាសប្រកបដោយក្តីស្រឡាញ់ ភាពកក់ក្តៅ និងចិត្តល្អ ដែលកុមារអាចលូតលាស់បានល្អ។
                 </p>
+                <div className="rule-rpp">
+                    <a href="#" className="privacy">Privacy-Policy</a>
+                    <a href="#" className="term"> Term&Condition</a>
+                </div>
                 <div className="container-feedback-icon">
                     <svg className="facebook" version="1.0" xmlns="http://www.w3.org/2000/svg"
                                     width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
